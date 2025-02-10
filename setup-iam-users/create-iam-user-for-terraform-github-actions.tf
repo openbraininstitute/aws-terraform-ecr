@@ -1,7 +1,3 @@
-provider "aws" {
-  region = "us-east-1"
-}
-
 # Create an IAM User
 resource "aws_iam_user" "terraform_ecr_github_actions" {
   name = "terraform-ecr-github-actions"
@@ -31,6 +27,13 @@ resource "aws_iam_user_policy" "terraform_ecr_github_actions_policy" {
       {
         Effect = "Allow"
         Action = [
+          "ecr-public:*",
+        ]
+        Resource = "*"
+      },
+      {
+        Effect = "Allow"
+        Action = [
           "ecr:BatchCheckLayerAvailability",
           "ecr:CompleteLayerUpload",
           "ecr:GetDownloadUrlForLayer",
@@ -49,13 +52,39 @@ resource "aws_iam_user_policy" "terraform_ecr_github_actions_policy" {
         Resource = "*"
       },
       {
-        Effect   = "Allow"
-        Action   = [
-          "ecr-public:CreateRegistryAlias",
-          "ecr-public:DescribeRegistryAliases",
-          "ecr-public:DeleteRegistryAlias"
+        Effect = "Allow"
+        Action = [
+          "s3:Create*",
+          "s3:Put*",
+          "s3:ListBucket",
+          "s3:Get*"
         ]
-        Resource = "*"
+        Resource = "arn:aws:s3:::obi-tfstate-*"
+      },
+      {
+        Effect = "Allow"
+        Action = [
+          "s3:PutObject",
+          "s3:GetObject",
+          "s3:DeleteObject",
+          "s3:ListBucketMultipartUploads",
+          "s3:AbortMultipartUpload"
+        ]
+        Resource = "arn:aws:s3:::obi-tfstate-*/*"
+      },
+      {
+        Effect = "Allow"
+        Action = [
+          "dynamodb:CreateTable",
+          "dynamodb:PutItem",
+          "dynamodb:GetItem",
+          "dynamodb:Scan",
+          "dynamodb:UpdateItem",
+          "dynamodb:DeleteItem",
+          "dynamodb:Describe*",
+          "dynamodb:List*",
+        ]
+        Resource = "arn:aws:dynamodb:*:*:table/terraform-state-lock-table-*"
       }
     ]
   })
@@ -67,12 +96,12 @@ resource "aws_iam_access_key" "terraform_ecr_github_actions_key" {
 }
 
 # Outputs (Sensitive outputs should be retrieved with `terraform output -raw <name>`)
-output "access_key_id" {
+output "terraform_ecr_github_actions_access_key_id" {
   value     = aws_iam_access_key.terraform_ecr_github_actions_key.id
   sensitive = true
 }
 
-output "secret_access_key" {
+output "terraform_ecr_github_actions_secret_access_key" {
   value     = aws_iam_access_key.terraform_ecr_github_actions_key.secret
   sensitive = true
 }

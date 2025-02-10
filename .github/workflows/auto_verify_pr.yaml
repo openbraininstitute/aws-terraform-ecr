@@ -1,0 +1,32 @@
+name: Auto - Verify & plan branch environment
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - production
+
+jobs:
+  terraform_verify:
+    environment: ${{ github.base_ref }}
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+    runs-on: ubuntu-latest
+    name: Auto Verify & plan terraform code for branch environment
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform format check
+        run: terraform fmt -check -diff -recursive
+
+      - name: Initialize Terraform
+        run: terraform init -backend-config="./${{ github.base_ref }}.config"
+
+      - name: Run Terraform Plan
+        run: |
+          terraform plan -var-file="${{ github.base_ref }}.tfvars" -out plan.tfplan >/dev/null && terraform show plan.tfplan
