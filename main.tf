@@ -9,33 +9,27 @@
 # * architectures has to be a list, allowed values are 'ARM', 'ARM 64', 'x86', 'x86-64'
 # For markdown syntax, see https://docs.aws.amazon.com/AmazonECR/latest/public/public-repository-catalog-data.html
 
-# Likely most important containers which we've been using from the BlueBrain docker hub organisation:
-# * bbp-workflow
-# * blue-naas-single-cell
-# * hpc-resource-provisioner
-# * kg-inference-api
-# * me-model-analysis
-# * obp-accounting-service
-# * obp-sonata-cell-position
-# * obp-virtual-lab-api
-# * sbo-core-web-app
-# * thumbnail-generation-api
-
 module "workflow" {
   source = "./public-ecr-repo"
 
   repository_name   = "workflow"
   short_name        = "Workflow"
   short_description = "Workflow engine used by the Open Brain Institute"
-  github_repo       = "https://github.com/openbraininstitute/bbp-workflow"
+  github_repo       = "https://github.com/openbraininstitute/bbp-workflow/"
   long_description  = "The workflow engine is used to run automated pipelines of batch jobs using python and the luigi framework."
   architectures     = ["x86-64"]
   operating_systems = ["Linux"]
 }
 
+module "public_ecr_github_actions_upload_credentials_workflow" {
+  source = "./public-ecr-upload-credentials"
+
+  iam_user_name    = "github_actions_upload_user_workflow"
+  repository_names = [module.workflow.repository_name]
+}
+
 module "core_web_app" {
   source = "./public-ecr-repo"
-  count  = 0 # Disabled
 
   repository_name   = "core-web-app"
   short_name        = "Core web application"
@@ -46,5 +40,162 @@ module "core_web_app" {
   operating_systems = ["Linux"]
 }
 
+module "public_ecr_github_actions_upload_credentials_core_web_app" {
+  source = "./public-ecr-upload-credentials"
 
+  iam_user_name    = "github_actions_upload_user_core_web_app"
+  repository_names = [module.core_web_app.repository_name]
+}
 
+# original name: blue-naas-single-cell
+module "single_cell_simulator" {
+  source = "./public-ecr-repo"
+
+  repository_name   = "single-cell-simulator"
+  short_name        = "Single Cell Simulator"
+  short_description = "Single Cell Simulator used by the Open Brain Institute"
+  github_repo       = "https://github.com/openbraininstitute/BlueNaaS-SingleCell/"
+  long_description  = "This application is used within the Open Brain Institute web platform to simulate single cells. It's based on BlueNaaS."
+  architectures     = ["x86-64"]
+  operating_systems = ["Linux"]
+}
+
+module "public_ecr_github_actions_upload_credentials_single_cell_simulator" {
+  source = "./public-ecr-upload-credentials"
+
+  iam_user_name    = "github_actions_upload_user_single_cell_simulator"
+  repository_names = [module.single_cell_simulator.repository_name]
+}
+
+module "hpc_resource_provisioner" {
+  source = "./public-ecr-repo"
+
+  repository_name   = "hpc-resource-provisioner"
+  short_name        = "HPC Resource Provisioner"
+  short_description = "Manages the creation and deletion of parallel custers in AWS"
+  github_repo       = "https://github.com/openbraininstitute/hpc-resource-provisioner/"
+  long_description  = "The HPC Resource Provisioner is a small application used by the Open Brain Institute that offers an API to manage the creation and deletion of parallel-clusters in AWS."
+  architectures     = ["x86-64"]
+  operating_systems = ["Linux"]
+}
+
+module "public_ecr_github_actions_upload_credentials_hpc_resource_provisioner" {
+  source = "./public-ecr-upload-credentials"
+
+  iam_user_name    = "github_actions_upload_user_hpc_resource_provisioner"
+  repository_names = [module.hpc_resource_provisioner.repository_name]
+}
+
+module "kg_inference_api" {
+  source = "./public-ecr-repo"
+
+  repository_name   = "kg-inference-api"
+  short_name        = "KG Inference API"
+  short_description = "Knowledge Graph Inference API, used by the Open Brain Institute"
+  github_repo       = "https://github.com/openbraininstitute/kg-inference-api/"
+  long_description  = "The KG Inference API is designed to infer morphologies based on various input characteristics. This API leverages knowledge graphs and inference techniques to provide insights into the structure and form of entities within a defined context."
+  architectures     = ["x86-64"]
+  operating_systems = ["Linux"]
+}
+
+module "public_ecr_github_actions_upload_credentials_kg_inference_api" {
+  source = "./public-ecr-upload-credentials"
+
+  iam_user_name    = "github_actions_upload_user_kg_inference_api"
+  repository_names = [module.kg_inference_api.repository_name]
+}
+
+module "me_model_analysis" {
+  source = "./public-ecr-repo"
+
+  repository_name   = "me-model-analysis"
+  short_name        = "Morpho-Electrical Model Analysis"
+  short_description = "Morpho-Electrical model analysis or single-cell model analysis, used by the Open Brain Institute"
+  github_repo       = "https://github.com/openbraininstitute/kg-inference-api/"
+  long_description  = "This container provides Morpho-Electrical model analysis or single-cell model analysis for the Open Brain Institute platform. The services executes a series of simulation experiments to compute different features of the model which can be used to determine how good a model is."
+  architectures     = ["x86-64"]
+  operating_systems = ["Linux"]
+}
+
+module "public_ecr_github_actions_upload_credentials_me_model_analysis" {
+  source = "./public-ecr-upload-credentials"
+
+  iam_user_name    = "github_actions_upload_user_me_model_analysis"
+  repository_names = [module.me_model_analysis.repository_name]
+}
+
+module "accounting_service" {
+  source = "./public-ecr-repo"
+
+  repository_name   = "accounting-service"
+  short_name        = "Accounting Service"
+  short_description = "The accounting service of the Open Brain Institute"
+  github_repo       = "https://github.com/openbraininstitute/accounting-service/"
+  long_description  = "Handles accounting within the Open Brain Institute platform"
+  architectures     = ["x86-64"]
+  operating_systems = ["Linux"]
+}
+
+module "public_ecr_github_actions_upload_credentials_accounting_service" {
+  source = "./public-ecr-upload-credentials"
+
+  iam_user_name    = "github_actions_upload_user_accounting_service"
+  repository_names = [module.accounting_service.repository_name]
+}
+
+module "sonata_cell_position" {
+  source = "./public-ecr-repo"
+
+  repository_name   = "sonata-cell-position"
+  short_name        = "Sonata Cell Position"
+  short_description = "The accounting service of the Open Brain Institute"
+  github_repo       = "https://github.com/openbraininstitute/sonata-cell-position/"
+  long_description  = "Sonata Cell Position application, part of the Open Brain Institute platform"
+  architectures     = ["x86-64"]
+  operating_systems = ["Linux"]
+}
+
+module "public_ecr_github_actions_upload_credentials_sonata_cell_position" {
+  source = "./public-ecr-upload-credentials"
+
+  iam_user_name    = "github_actions_upload_user_sonata_cell_position"
+  repository_names = [module.sonata_cell_position.repository_name]
+}
+
+module "virtual_lab_api" {
+  source = "./public-ecr-repo"
+
+  repository_name   = "virtual-lab-api"
+  short_name        = "Virtual Lab API"
+  short_description = "REST api that is used to manage virtual labs and their projects, primarily by the core-web-app"
+  github_repo       = "https://github.com/openbraininstitute/virtual-lab-api/"
+  long_description  = "This container provides the REST api that is used to manage virtual labs and their projects, primarily by the core-web-app."
+  architectures     = ["x86-64"]
+  operating_systems = ["Linux"]
+}
+
+module "public_ecr_github_actions_upload_credentials_virtual_lab_api" {
+  source = "./public-ecr-upload-credentials"
+
+  iam_user_name    = "github_actions_upload_user_virtual_lab_api"
+  repository_names = [module.virtual_lab_api.repository_name]
+}
+
+module "thumbnail_generation_api" {
+  source = "./public-ecr-repo"
+
+  repository_name   = "thumbnail-generation-api"
+  short_name        = "Thumbnail Generation API"
+  short_description = "Service for generating thumbnails of morphologies/electrophysiologies and the soma of morphologies"
+  github_repo       = "https://github.com/openbraininstitute/thumbnail-generation-api/"
+  long_description  = "The Thumbnail Generation API provides the service for generating thumbnails of morphologies/electrophysiologies and the soma of morphologies. The API is designed to receive a content_url from a Nexus resource (morphology or electrophysiology) and produce a corresponding thumbnail image."
+  architectures     = ["x86-64"]
+  operating_systems = ["Linux"]
+}
+
+module "public_ecr_github_actions_upload_credentials_thumbnail_generation_api" {
+  source = "./public-ecr-upload-credentials"
+
+  iam_user_name    = "github_actions_upload_user_thumbnail_generation_api"
+  repository_names = [module.thumbnail_generation_api.repository_name]
+}

@@ -85,6 +85,13 @@ resource "aws_iam_user_policy" "terraform_ecr_github_actions_policy" {
           "dynamodb:List*",
         ]
         Resource = "arn:aws:dynamodb:*:*:table/terraform-state-lock-table-*"
+      },
+      {
+        Effect = "Allow"
+        Action = [
+          "iam:*"
+        ]
+        Resource = "*"
       }
     ]
   })
