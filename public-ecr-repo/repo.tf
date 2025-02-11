@@ -21,3 +21,8 @@ resource "aws_ecrpublic_repository" "public_repo" {
     about_text        = templatefile("${path.module}/about_text.tfpl.md", local.template_input)
   }
 }
+
+#resource "aws_ecrpublic_repository_policy" "attach_policy" {
+#  repository_name = aws_ecrpublic_repository.public_repo.repository_name
+#  policy          = data.aws_iam_policy_document.example.json
+#}

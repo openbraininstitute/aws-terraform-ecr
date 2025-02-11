@@ -66,5 +66,18 @@ To configure: login with the public-ecr-admin admin user and open https://us-eas
 
 For more info see https://docs.aws.amazon.com/AmazonECR/latest/public/public-registry-settings.html
 
+# Public repos and access credentials for uploading images
+
+In main.tf, 10 public ECR repositories are created.
+
+At the moment also a single user is created which gets upload access to all those repositories.
+
+To view the id and secret:
+
+```
+terraform output -raw module.public_ecr_github_actions_upload_credentials.publicecr_upload_access_key_id
+terraform output -raw module.public_ecr_github_actions_upload_credentials.publicecr_upload__secret_access_key
+```
+
 # Copyright
 Copyright (c) 2025 Open Brain Institute
