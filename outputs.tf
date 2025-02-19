@@ -97,3 +97,13 @@ output "public_ecr_github_actions_upload_credentials_thumbnail_generation_api_se
   value     = module.public_ecr_github_actions_upload_credentials_thumbnail_generation_api.publicecr_upload_secret_access_key
   sensitive = true
 }
+
+output "public_ecr_github_actions_upload_credentials_entitycore_access_key_id" {
+  value     = module.public_ecr_github_actions_upload_credentials_entitycore.publicecr_upload_access_key_id
+  sensitive = true
+}
+
+output "public_ecr_github_actions_upload_credentials_entitycore_secret_access_key" {
+  value     = module.public_ecr_github_actions_upload_credentials_entitycore.publicecr_upload_secret_access_key
+  sensitive = true
+}
