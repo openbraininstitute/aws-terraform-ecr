@@ -199,3 +199,22 @@ module "public_ecr_github_actions_upload_credentials_thumbnail_generation_api" {
   iam_user_name    = "github_actions_upload_user_thumbnail_generation_api"
   repository_names = [module.thumbnail_generation_api.repository_name]
 }
+
+module "entitycore" {
+  source = "./public-ecr-repo"
+
+  repository_name   = "entitycore"
+  short_name        = "Entity Core"
+  short_description = "Entity and File manager for OBI"
+  github_repo       = "https://github.com/openbraininstitute/entitycore/"
+  long_description  = "Entity and File manager for OBI"
+  architectures     = ["x86-64"]
+  operating_systems = ["Linux"]
+}
+
+module "public_ecr_github_actions_upload_credentials_entitycore" {
+  source = "./public-ecr-upload-credentials"
+
+  iam_user_name    = "github_actions_upload_user_entitycore"
+  repository_names = [module.entitycore.repository_name]
+}

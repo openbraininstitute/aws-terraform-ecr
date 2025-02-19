@@ -31,7 +31,7 @@ terraform import aws_iam_user.terraform_ecr_github_actions terraform-ecr-github-
 terraform import aws_iam_user_policy.ecr_public_admin_policy public-ecr-admin:ECRPublicAdminPolicy
 terraform import aws_iam_user_login_profile.public_ecr_admin_login_profile public-ecr-admin
 terraform import aws_iam_user_policy.terraform_ecr_github_actions_policy terraform-ecr-github-actions:ObiTerraformEcrGithubActions
-pass github/aws-terraform-ecr/production/AWS_ACCESS_KEY_ID
+pass github/secrets/aws-terraform-ecr/production/AWS_ACCESS_KEY_ID
 terraform import aws_iam_access_key.terraform_ecr_github_actions_key aws_access_key_ID_here
 
 terraform plan
