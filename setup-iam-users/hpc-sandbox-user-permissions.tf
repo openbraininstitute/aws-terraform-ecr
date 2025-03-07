@@ -4,11 +4,13 @@ data "aws_iam_policy_document" "hpc_user_access_policy" {
     effect = "Allow"
     principals {
       type        = "AWS"
-      identifiers = ["130659266700"]
+      identifiers = ["arn:aws:iam::130659266700:user/heeren"]
     }
     actions = [
       "ecr-public:DescribeImages",
-      "ecr-public:DescribeRepositories"
+      "ecr-public:DescribeRepositories",
+      "ecr:DescribeImages",
+      "ecr:DescribeRepositories"
     ]
   }
 }
