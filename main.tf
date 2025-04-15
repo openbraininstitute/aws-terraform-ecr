@@ -9,6 +9,16 @@
 # * architectures has to be a list, allowed values are 'ARM', 'ARM 64', 'x86', 'x86-64'
 # For markdown syntax, see https://docs.aws.amazon.com/AmazonECR/latest/public/public-repository-catalog-data.html
 
+locals {
+  github_organisation = "openbraininstitute"
+}
+
+
+module "iam_github_oidc_provider" {
+  source = "terraform-aws-modules/iam/aws//modules/iam-github-oidc-provider"
+}
+
+
 module "workflow" {
   source = "./public-ecr-repo"
 
@@ -24,8 +34,10 @@ module "workflow" {
 module "public_ecr_github_actions_upload_credentials_workflow" {
   source = "./public-ecr-upload-credentials"
 
-  iam_user_name    = "github_actions_upload_user_workflow"
-  repository_names = [module.workflow.repository_name]
+  iam_user_name          = "github_actions_upload_user_workflow"
+  ecr_repository_name    = module.workflow.repository_name
+  github_organisation    = local.github_organisation
+  github_repository_name = "bbp-workflow"
 }
 
 module "core_web_app" {
@@ -43,8 +55,10 @@ module "core_web_app" {
 module "public_ecr_github_actions_upload_credentials_core_web_app" {
   source = "./public-ecr-upload-credentials"
 
-  iam_user_name    = "github_actions_upload_user_core_web_app"
-  repository_names = [module.core_web_app.repository_name]
+  iam_user_name          = "github_actions_upload_user_core_web_app"
+  ecr_repository_name    = module.core_web_app.repository_name
+  github_organisation    = local.github_organisation
+  github_repository_name = "core-web-app"
 }
 
 # original name: blue-naas-single-cell
@@ -63,8 +77,10 @@ module "single_cell_simulator" {
 module "public_ecr_github_actions_upload_credentials_single_cell_simulator" {
   source = "./public-ecr-upload-credentials"
 
-  iam_user_name    = "github_actions_upload_user_single_cell_simulator"
-  repository_names = [module.single_cell_simulator.repository_name]
+  iam_user_name          = "github_actions_upload_user_single_cell_simulator"
+  ecr_repository_name    = module.single_cell_simulator.repository_name
+  github_organisation    = local.github_organisation
+  github_repository_name = "BlueNaaS-SingleCell"
 }
 
 module "hpc_resource_provisioner" {
@@ -82,8 +98,10 @@ module "hpc_resource_provisioner" {
 module "public_ecr_github_actions_upload_credentials_hpc_resource_provisioner" {
   source = "./public-ecr-upload-credentials"
 
-  iam_user_name    = "github_actions_upload_user_hpc_resource_provisioner"
-  repository_names = [module.hpc_resource_provisioner.repository_name]
+  iam_user_name          = "github_actions_upload_user_hpc_resource_provisioner"
+  ecr_repository_name    = module.hpc_resource_provisioner.repository_name
+  github_organisation    = local.github_organisation
+  github_repository_name = "BlueNaaS-SingleCell"
 }
 
 module "kg_inference_api" {
@@ -101,8 +119,10 @@ module "kg_inference_api" {
 module "public_ecr_github_actions_upload_credentials_kg_inference_api" {
   source = "./public-ecr-upload-credentials"
 
-  iam_user_name    = "github_actions_upload_user_kg_inference_api"
-  repository_names = [module.kg_inference_api.repository_name]
+  iam_user_name          = "github_actions_upload_user_kg_inference_api"
+  ecr_repository_name    = module.kg_inference_api.repository_name
+  github_organisation    = local.github_organisation
+  github_repository_name = "BlueNaaS-SingleCell"
 }
 
 module "me_model_analysis" {
@@ -120,8 +140,10 @@ module "me_model_analysis" {
 module "public_ecr_github_actions_upload_credentials_me_model_analysis" {
   source = "./public-ecr-upload-credentials"
 
-  iam_user_name    = "github_actions_upload_user_me_model_analysis"
-  repository_names = [module.me_model_analysis.repository_name]
+  iam_user_name          = "github_actions_upload_user_me_model_analysis"
+  ecr_repository_name    = module.me_model_analysis.repository_name
+  github_organisation    = local.github_organisation
+  github_repository_name = "me-model-analysis"
 }
 
 module "accounting_service" {
@@ -139,8 +161,10 @@ module "accounting_service" {
 module "public_ecr_github_actions_upload_credentials_accounting_service" {
   source = "./public-ecr-upload-credentials"
 
-  iam_user_name    = "github_actions_upload_user_accounting_service"
-  repository_names = [module.accounting_service.repository_name]
+  iam_user_name          = "github_actions_upload_user_accounting_service"
+  ecr_repository_name    = module.accounting_service.repository_name
+  github_organisation    = local.github_organisation
+  github_repository_name = "accounting-service"
 }
 
 module "sonata_cell_position" {
@@ -158,8 +182,10 @@ module "sonata_cell_position" {
 module "public_ecr_github_actions_upload_credentials_sonata_cell_position" {
   source = "./public-ecr-upload-credentials"
 
-  iam_user_name    = "github_actions_upload_user_sonata_cell_position"
-  repository_names = [module.sonata_cell_position.repository_name]
+  iam_user_name          = "github_actions_upload_user_sonata_cell_position"
+  ecr_repository_name    = module.sonata_cell_position.repository_name
+  github_organisation    = local.github_organisation
+  github_repository_name = "sonata-cell-position"
 }
 
 module "virtual_lab_api" {
@@ -177,8 +203,10 @@ module "virtual_lab_api" {
 module "public_ecr_github_actions_upload_credentials_virtual_lab_api" {
   source = "./public-ecr-upload-credentials"
 
-  iam_user_name    = "github_actions_upload_user_virtual_lab_api"
-  repository_names = [module.virtual_lab_api.repository_name]
+  iam_user_name          = "github_actions_upload_user_virtual_lab_api"
+  ecr_repository_name    = module.virtual_lab_api.repository_name
+  github_organisation    = local.github_organisation
+  github_repository_name = "virtual-lab-api"
 }
 
 module "thumbnail_generation_api" {
@@ -196,8 +224,10 @@ module "thumbnail_generation_api" {
 module "public_ecr_github_actions_upload_credentials_thumbnail_generation_api" {
   source = "./public-ecr-upload-credentials"
 
-  iam_user_name    = "github_actions_upload_user_thumbnail_generation_api"
-  repository_names = [module.thumbnail_generation_api.repository_name]
+  iam_user_name          = "github_actions_upload_user_thumbnail_generation_api"
+  ecr_repository_name    = module.thumbnail_generation_api.repository_name
+  github_organisation    = local.github_organisation
+  github_repository_name = "thumbnail-generation-api"
 }
 
 module "entitycore" {
@@ -215,6 +245,8 @@ module "entitycore" {
 module "public_ecr_github_actions_upload_credentials_entitycore" {
   source = "./public-ecr-upload-credentials"
 
-  iam_user_name    = "github_actions_upload_user_entitycore"
-  repository_names = [module.entitycore.repository_name]
+  iam_user_name          = "github_actions_upload_user_entitycore"
+  ecr_repository_name    = module.entitycore.repository_name
+  github_organisation    = local.github_organisation
+  github_repository_name = "entitycore"
 }

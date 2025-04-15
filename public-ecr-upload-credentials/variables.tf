@@ -4,8 +4,20 @@ variable "iam_user_name" {
   sensitive   = false
 }
 
-variable "repository_names" {
-  type        = list(string)
-  description = "Names of the public ECR repositories to which the user needs upload access"
+variable "ecr_repository_name" {
+  type        = string
+  description = "Name of the public ECR repository to which the github action needs upload access"
+  sensitive   = false
+}
+
+variable "github_organisation" {
+  type        = string
+  description = "GitHub organisation name"
+  sensitive   = false
+}
+
+variable "github_repository_name" {
+  type        = string
+  description = "GitHub repository name"
   sensitive   = false
 }

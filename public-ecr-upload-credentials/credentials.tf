@@ -1,3 +1,35 @@
+# Transition: both the 'old style' user with access key, and 'new style' github actions role with github idp
+
+resource "aws_iam_role" "github_actions_role" {
+  name = "gh_ecr_push_${var.ecr_repository_name}"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Effect = "Allow",
+        Principal = {
+          Federated = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:oidc-provider/token.actions.githubusercontent.com"
+        },
+        Action = "sts:AssumeRoleWithWebIdentity",
+        Condition = {
+          StringLike = {
+            "token.actions.githubusercontent.com:sub" = "repo:${var.github_organisation}/${var.github_repository_name}:*"
+          },
+          StringEquals = {
+            "token.actions.githubusercontent.com:aud" = "sts.amazonaws.com"
+          }
+        }
+      }
+    ]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "attach_policy" {
+  role       = aws_iam_role.github_actions_role.name
+  policy_arn = aws_iam_policy.ecr_push_policy.arn
+}
+
 resource "aws_iam_user" "ecr_user" {
   name = var.iam_user_name
 }
@@ -39,7 +71,7 @@ resource "aws_iam_policy" "ecr_push_policy" {
           "ecr-public:CompleteLayerUpload",
           "ecr-public:DescribeRepositories"
         ]
-        Resource = [for repo in var.repository_names : "arn:aws:ecr-public::${data.aws_caller_identity.current.account_id}:repository/${repo}"]
+        Resource = ["arn:aws:ecr-public::${data.aws_caller_identity.current.account_id}:repository/${var.ecr_repository_name}"]
       }
     ]
   })
