@@ -54,7 +54,7 @@ module "obi-generative-gui" {
 module "public_ecr_github_actions_upload_credentials_obi_generative_gui" {
   source = "./public-ecr-upload-credentials"
 
-  iam_user_name          = "github_actions_upload_user_obi_one"
+  iam_user_name          = "github_actions_upload_user_obi_generative_gui"
   ecr_repository_name    = module.obi-generative-gui.repository_name
   github_organisation    = local.github_organisation
   github_repository_name = "obi-generative-gui"
