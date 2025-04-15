@@ -39,6 +39,27 @@ module "public_ecr_github_actions_upload_credentials_obi_one" {
   github_repository_name = "obi-one"
 }
 
+module "obi-generative-gui" {
+  source = "./public-ecr-repo"
+
+  repository_name   = "obi-generative-gui"
+  short_name        = "obi-generative-gui"
+  short_description = "obi-generative-gui"
+  github_repo       = "https://github.com/openbraininstitute/obi-generative-gui"
+  long_description  = "obi-generative-gui"
+  architectures     = ["x86-64"]
+  operating_systems = ["Linux"]
+}
+
+module "public_ecr_github_actions_upload_credentials_obi_generative_gui" {
+  source = "./public-ecr-upload-credentials"
+
+  iam_user_name          = "github_actions_upload_user_obi_one"
+  ecr_repository_name    = module.obi-generative-gui.repository_name
+  github_organisation    = local.github_organisation
+  github_repository_name = "obi-generative-gui"
+}
+
 module "workflow" {
   source = "./public-ecr-repo"
 
