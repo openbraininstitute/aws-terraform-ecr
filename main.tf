@@ -1,7 +1,7 @@
 
 # For info, a repo has the following fields:
 # * repository_name can be of type 'repo-name' or 'namespace/repo-name'
-# * logo must be a png of max 500kb, with width&height between 60 and 2048 pixels: currently fixed to 
+# * logo must be a png of max 500kb, with width&height between 60 and 2048 pixels: currently fixed to
 # * short_description is limited to 255 characters. It's only visible once the OBI registry would become verified.
 # * about_text can be a quite long markdown formatted text: fixed template at the moment
 # * usage_text can be a quite long markdown formatted text: fixed template at the moment
@@ -18,6 +18,26 @@ module "iam_github_oidc_provider" {
   source = "terraform-aws-modules/iam/aws//modules/iam-github-oidc-provider"
 }
 
+module "obi-one" {
+  source = "./public-ecr-repo"
+
+  repository_name   = "obi-one"
+  short_name        = "obi-one"
+  short_description = "obi-one is a standardized library of functions"
+  github_repo       = "https://github.com/openbraininstitute/obi-one"
+  long_description  = "obi-one is a standardized library of functions + workflows for biophysically-detailed brain modeling"
+  architectures     = ["x86-64"]
+  operating_systems = ["Linux"]
+}
+
+module "public_ecr_github_actions_upload_credentials_obi_one" {
+  source = "./public-ecr-upload-credentials"
+
+  iam_user_name          = "github_actions_upload_user_obi_one"
+  ecr_repository_name    = module.obi-one.repository_name
+  github_organisation    = local.github_organisation
+  github_repository_name = "obi-one"
+}
 
 module "workflow" {
   source = "./public-ecr-repo"
