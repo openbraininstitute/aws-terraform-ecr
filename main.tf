@@ -291,3 +291,26 @@ module "public_ecr_github_actions_upload_credentials_entitycore" {
   github_organisation    = local.github_organisation
   github_repository_name = "entitycore"
 }
+
+
+module "neurodamus" {
+  source = "./public-ecr-repo"
+
+  repository_name   = "neurodamus"
+  short_name        = "Neurodamus"
+  short_description = "Neurodamus is a BBP Simulation Control application for Neuron."
+  github_repo       = "https://github.com/openbraininstitute/neurodamus/"
+  long_description  = "Neurodamus is a BBP Simulation Control application for Neuron."
+  architectures     = ["x86-64"]
+  operating_systems = ["Linux"]
+}
+
+module "public_ecr_github_actions_upload_credentials_neurodamus" {
+  source = "./public-ecr-upload-credentials"
+
+  iam_user_name          = "github_actions_upload_user_neurodamus"
+  ecr_repository_name    = module.neurodamus.repository_name
+  github_organisation    = local.github_organisation
+  github_repository_name = "neurodamus"
+}
+
