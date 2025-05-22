@@ -320,7 +320,7 @@ module "notebook_service" {
   repository_name   = "notebook-service"
   short_name        = "Notebook Service"
   short_description = "The Notebook Service allows launching notebooks within the platform."
-  github_repo       = "https://github.com/openbraininstitute/neurodamus/"
+  github_repo       = "https://github.com/openbraininstitute/notebook-service/"
   long_description  = "The Notebook Service allows launching notebooks within the platform."
   architectures     = ["x86-64"]
   operating_systems = ["Linux"]

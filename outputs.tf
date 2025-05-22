@@ -107,3 +107,13 @@ output "public_ecr_github_actions_upload_credentials_entitycore_secret_access_ke
   value     = module.public_ecr_github_actions_upload_credentials_entitycore.publicecr_upload_secret_access_key
   sensitive = true
 }
+
+output "public_ecr_github_actions_upload_credentials_notebook_service_access_key_id" {
+  value     = module.public_ecr_github_actions_upload_credentials_notebook_service.publicecr_upload_access_key_id
+  sensitive = true
+}
+
+output "public_ecr_github_actions_upload_credentials_notebook_service_secret_access_key" {
+  value     = module.public_ecr_github_actions_upload_credentials_notebook_service.publicecr_upload_secret_access_key
+  sensitive = true
+}
