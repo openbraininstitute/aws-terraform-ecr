@@ -83,5 +83,35 @@ resource "aws_iam_user_policy_attachment" "ecr_user_policy_attachment" {
   policy_arn = aws_iam_policy.ecr_push_policy.arn
 }
 
+# policy to allow changes on CDN S3 buckets (core_webapp-static-assets-*)
+resource "aws_iam_policy" "cdn_s3_edit_policy" {
+  count       = var.cdn_s3_bucket_access ? 1 : 0
+  name        = "${var.iam_user_name}-CDNEditPolicy"
+  description = "Allows changes on CDN S3 Bucket"
+
+  policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = [
+          "s3:PutObject",
+          "s3:GetObject",
+          "s3:DeleteObject",
+          "s3:ListBucketMultipartUploads",
+          "s3:AbortMultipartUpload"
+        ]
+        Resource = "arn:aws:s3:::core_webapp-static-assets-*/*"
+      },
+    ]
+  })
+}
+
+resource "aws_iam_user_policy_attachment" "cdn_s3_edit_policy_attachment" {
+  count      = var.cdn_s3_bucket_access ? 1 : 0
+  user       = aws_iam_user.ecr_user.name
+  policy_arn = aws_iam_policy.cdn_s3_edit_policy[0].arn
+}
+
 # Data source to get the current AWS account ID
 data "aws_caller_identity" "current" {}

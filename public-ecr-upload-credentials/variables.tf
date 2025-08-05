@@ -21,3 +21,9 @@ variable "github_repository_name" {
   description = "GitHub repository name"
   sensitive   = false
 }
+
+variable "cdn_s3_bucket_access" {
+  type        = bool
+  description = "If true the IAM user will be able to edit objects on the CDN S3 buckets"
+  default     = false
+}
