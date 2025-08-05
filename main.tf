@@ -100,6 +100,7 @@ module "public_ecr_github_actions_upload_credentials_core_web_app" {
   ecr_repository_name    = module.core_web_app.repository_name
   github_organisation    = local.github_organisation
   github_repository_name = "core-web-app"
+  cdn_s3_bucket_access   = true
 }
 
 # original name: blue-naas-single-cell
