@@ -83,7 +83,7 @@ resource "aws_iam_user_policy_attachment" "ecr_user_policy_attachment" {
   policy_arn = aws_iam_policy.ecr_push_policy.arn
 }
 
-# policy to allow changes on CDN S3 buckets (core_webapp-static-assets-*)
+# policy to allow changes on CDN S3 buckets (core-webapp-static-assets-*)
 resource "aws_iam_policy" "cdn_s3_edit_policy" {
   count       = var.cdn_s3_bucket_access ? 1 : 0
   name        = "${var.iam_user_name}-CDNEditPolicy"
@@ -101,7 +101,7 @@ resource "aws_iam_policy" "cdn_s3_edit_policy" {
           "s3:ListBucketMultipartUploads",
           "s3:AbortMultipartUpload"
         ]
-        Resource = "arn:aws:s3:::core_webapp-static-assets-*/*"
+        Resource = "arn:aws:s3:::core-webapp-static-assets-*/*"
       },
     ]
   })
