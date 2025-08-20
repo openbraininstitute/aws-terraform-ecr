@@ -15,7 +15,8 @@ locals {
 
 
 module "iam_github_oidc_provider" {
-  source = "terraform-aws-modules/iam/aws//modules/iam-github-oidc-provider"
+  source  = "terraform-aws-modules/iam/aws//modules/iam-github-oidc-provider"
+  version = "v5.60.0"
 }
 
 module "obi-one" {
