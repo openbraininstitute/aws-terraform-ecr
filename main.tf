@@ -348,3 +348,12 @@ module "obi_notebook_image" {
   architectures     = ["x86-64"]
   operating_systems = ["Linux"]
 }
+
+module "public_ecr_github_actions_upload_credentials_obi-notebook_image" {
+  source = "./public-ecr-upload-credentials"
+
+  iam_user_name          = "github_actions_upload_user_obi_notebook_image"
+  ecr_repository_name    = module.obi_notebook_image.repository_name
+  github_organisation    = local.github_organisation
+  github_repository_name = "obi-notebook-image"
+}
