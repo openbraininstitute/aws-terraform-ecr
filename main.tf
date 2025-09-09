@@ -336,3 +336,15 @@ module "public_ecr_github_actions_upload_credentials_notebook_service" {
   github_organisation    = local.github_organisation
   github_repository_name = "notebook-service"
 }
+
+module "obi_notebook_image" {
+  source = "./public-ecr-repo"
+
+  repository_name   = "obi-notebook-image"
+  short_name        = "obi-notebook-image"
+  short_description = "Jupyter notebook container image with OBI packages installed"
+  github_repo       = "https://github.com/openbraininstitute/obi-notebook-image/"
+  long_description  = "Jupyter notebook container image with OBI packages installed"
+  architectures     = ["x86-64"]
+  operating_systems = ["Linux"]
+}
