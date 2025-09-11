@@ -117,3 +117,13 @@ output "public_ecr_github_actions_upload_credentials_notebook_service_secret_acc
   value     = module.public_ecr_github_actions_upload_credentials_notebook_service.publicecr_upload_secret_access_key
   sensitive = true
 }
+
+output "private_ecr_github_actions_upload_credentials_obi_notebook_image_access_key_id" {
+  value     = module.private_ecr_github_actions_upload_credentials_obi-notebook_image.privateecr_upload_access_key_id
+  sensitive = true
+}
+
+output "private_ecr_github_actions_upload_credentials_obi_notebook_image_secret_access_key" {
+  value     = module.private_ecr_github_actions_upload_credentials_obi-notebook_image.privateecr_upload_secret_access_key
+  sensitive = true
+}
