@@ -338,19 +338,12 @@ module "public_ecr_github_actions_upload_credentials_notebook_service" {
 }
 
 module "obi_notebook_image" {
-  source = "./public-ecr-repo"
-
-  repository_name   = "obi-notebook-image"
-  short_name        = "obi-notebook-image"
-  short_description = "Jupyter notebook container image with OBI packages installed"
-  github_repo       = "https://github.com/openbraininstitute/obi-notebook-image/"
-  long_description  = "Jupyter notebook container image with OBI packages installed"
-  architectures     = ["x86-64"]
-  operating_systems = ["Linux"]
+  source          = "./private-ecr-repo"
+  repository_name = "obi-notebook-image"
 }
 
-module "public_ecr_github_actions_upload_credentials_obi-notebook_image" {
-  source = "./public-ecr-upload-credentials"
+module "private_ecr_github_actions_upload_credentials_obi-notebook_image" {
+  source = "./private-ecr-upload-credentials"
 
   iam_user_name          = "github_actions_upload_user_obi_notebook_image"
   ecr_repository_name    = module.obi_notebook_image.repository_name
