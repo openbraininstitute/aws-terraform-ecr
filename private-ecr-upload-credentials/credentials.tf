@@ -71,7 +71,7 @@ resource "aws_iam_policy" "ecr_push_policy" {
           "ecr:CompleteLayerUpload",
           "ecr:DescribeRepositories"
         ]
-        Resource = ["arn:aws:ecr::${data.aws_caller_identity.current.account_id}:repository/${var.ecr_repository_name}"]
+        Resource = ["arn:aws:ecr:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:repository/${var.ecr_repository_name}"]
       }
     ]
   })
@@ -85,3 +85,5 @@ resource "aws_iam_user_policy_attachment" "ecr_user_policy_attachment" {
 
 # Data source to get the current AWS account ID
 data "aws_caller_identity" "current" {}
+
+data "aws_region" "current" {}
