@@ -19,8 +19,10 @@ resource "aws_iam_user_policy" "terraform_ecr_github_actions_policy" {
           "ecr:PutImageScanningConfiguration",
           "ecr:TagResource",
           "ecr:DeleteRepository",
+          "ecr:DescribeRepositories",
           "ecr:SetRepositoryPolicy",
-          "ecr:GetRepositoryPolicy"
+          "ecr:GetRepositoryPolicy",
+          "ecr:ListTagsForResource"
         ]
         Resource = "*"
       },
