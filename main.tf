@@ -338,8 +338,9 @@ module "public_ecr_github_actions_upload_credentials_notebook_service" {
 }
 
 module "obi_notebook_image" {
-  source          = "./private-ecr-repo"
-  repository_name = "obi-notebook-image"
+  source                     = "./private-ecr-repo"
+  repository_name            = "obi-notebook-image"
+  allowed_to_pull_identities = ["arn:aws:iam::992382665735:role/eksctl-jupyterhub-svc-nodegroup-ng-NodeInstanceRole-ZT1FeO9Ce2wc"]
 }
 
 module "private_ecr_github_actions_upload_credentials_obi-notebook_image" {
