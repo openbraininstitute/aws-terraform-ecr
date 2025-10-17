@@ -355,10 +355,8 @@ module "private_ecr_github_actions_upload_credentials_obi-notebook_image" {
 module "launch_system" {
   source = "./private-ecr-repo"
 
-  repository_name = "launch-system"
-  # TODO: change when the ECS has been created
-  # allowed_to_pull_identities = ["arn:aws:ecs:us-east-1:992382665735:service/launch_ecs_cluster/launch_ecs_cluster", "arn:aws:ecs:us-east-1:671250183987:service/launch_ecs_cluster/launch_ecs_cluster"]
-  allowed_to_pull_identities = ["arn:aws:iam::992382665735:role/eksctl-jupyterhub-svc-nodegroup-ng-NodeInstanceRole-ZT1FeO9Ce2wc", "arn:aws:iam::671250183987:role/eksctl-jupyterhub-svc-nodegroup-ng-NodeInstanceRole-6yJ0qhsCTcMr"]
+  repository_name            = "launch-system"
+  allowed_to_pull_identities = ["arn:aws:ecs:us-east-1:992382665735:service/notebook_service_ecs_cluster/notebook_service_ecs_service"]
 }
 
 module "private_ecr_github_actions_upload_credentials_launch_system" {
