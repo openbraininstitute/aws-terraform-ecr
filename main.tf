@@ -361,7 +361,7 @@ module "launch_system" {
   allowed_to_pull_identities = ["arn:aws:iam::992382665735:role/eksctl-jupyterhub-svc-nodegroup-ng-NodeInstanceRole-ZT1FeO9Ce2wc", "arn:aws:iam::671250183987:role/eksctl-jupyterhub-svc-nodegroup-ng-NodeInstanceRole-6yJ0qhsCTcMr"]
 }
 
-module "public_ecr_github_actions_upload_credentials_launch_system" {
+module "private_ecr_github_actions_upload_credentials_launch_system" {
   source = "./private-ecr-upload-credentials"
 
   iam_user_name          = "github_actions_upload_user_launch_system"
