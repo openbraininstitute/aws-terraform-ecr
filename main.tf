@@ -356,7 +356,7 @@ module "launch_system" {
   source = "./private-ecr-repo"
 
   repository_name            = "launch-system"
-  allowed_to_pull_identities = ["arn:aws:ecs:us-east-1:992382665735:task/launch_ecs_cluster/0268c2c2dd9d44a389f2ac5086f8f91d"]
+  allowed_to_pull_identities = ["arn:aws:iam::992382665735:role/launch20251017122840582600000005"]
 }
 
 module "private_ecr_github_actions_upload_credentials_launch_system" {
