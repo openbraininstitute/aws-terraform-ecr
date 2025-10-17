@@ -351,3 +351,20 @@ module "private_ecr_github_actions_upload_credentials_obi-notebook_image" {
   github_organisation    = local.github_organisation
   github_repository_name = "obi-notebook-image"
 }
+
+module "launch_system" {
+  source = "./private-ecr-repo"
+
+  repository_name            = "launch-system"
+  allowed_to_pull_identities = ["arn:aws:ecs:us-east-1:992382665735:service/launch_ecs_cluster/launch_ecs_cluster", "arn:aws:ecs:us-east-1:671250183987:service/launch_ecs_cluster/launch_ecs_cluster"]
+}
+
+module "public_ecr_github_actions_upload_credentials_launch_system" {
+  source = "./private-ecr-upload-credentials"
+
+  iam_user_name          = "github_actions_upload_user_launch_system"
+  ecr_repository_name    = module.launch_system.repository_name
+  github_organisation    = local.github_organisation
+  github_repository_name = "launch-system"
+}
+
