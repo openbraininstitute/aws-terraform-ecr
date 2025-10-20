@@ -368,3 +368,19 @@ module "private_ecr_github_actions_upload_credentials_launch_system" {
   github_repository_name = "launch-system"
 }
 
+module "launch_executor" {
+  source = "./private-ecr-repo"
+
+  repository_name            = "launch-executor"
+  allowed_to_pull_identities = ["arn:aws:iam::992382665735:role/launch20251017122840582600000005"] # TODO: update when ECS created
+}
+
+module "private_ecr_github_actions_upload_credentials_launch_executor" {
+  source = "./private-ecr-upload-credentials"
+
+  iam_user_name          = "github_actions_upload_user_launch_executor"
+  ecr_repository_name    = module.launch_executor.repository_name
+  github_organisation    = local.github_organisation
+  github_repository_name = "launch-system" # it is in the same repo as launch-system, this is not a typo
+}
+
