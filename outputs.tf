@@ -137,3 +137,13 @@ output "private_ecr_github_actions_upload_credentials_obi_launch_system_secret_a
   value     = module.private_ecr_github_actions_upload_credentials_launch_system.privateecr_upload_secret_access_key
   sensitive = true
 }
+
+output "private_ecr_github_actions_upload_credentials_obi_launch_executor_access_key_id" {
+  value     = module.private_ecr_github_actions_upload_credentials_launch_executor.privateecr_upload_access_key_id
+  sensitive = true
+}
+
+output "private_ecr_github_actions_upload_credentials_obi_launch_executor_secret_access_key" {
+  value     = module.private_ecr_github_actions_upload_credentials_launch_executor.privateecr_upload_secret_access_key
+  sensitive = true
+}
