@@ -372,7 +372,7 @@ module "launch_executor" {
   source = "./private-ecr-repo"
 
   repository_name            = "launch-executor"
-  allowed_to_pull_identities = ["arn:aws:iam::992382665735:role/launch20251017122840582600000005"] # TODO: update when ECS created
+  allowed_to_pull_identities = ["arn:aws:iam::009203151042:role/launch20251017061000092500000003"]
 }
 
 module "private_ecr_github_actions_upload_credentials_launch_executor" {
