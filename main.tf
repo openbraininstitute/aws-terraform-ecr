@@ -384,3 +384,18 @@ module "private_ecr_github_actions_upload_credentials_launch_executor" {
   github_repository_name = "launch-system" # it is in the same repo as launch-system, this is not a typo
 }
 
+module "auth_manager" {
+  source = "./private-ecr-repo"
+
+  repository_name            = "auth-manager"
+  allowed_to_pull_identities = ["arn:aws:iam::009203151042:role/launch20251017061000092500000003"] # to be replaced
+}
+
+module "private_ecr_github_actions_upload_credentials_auth_manager" {
+  source = "./private-ecr-upload-credentials"
+
+  iam_user_name          = "github_actions_upload_user_auth_manager"
+  ecr_repository_name    = module.auth_manager.repository_name
+  github_organisation    = local.github_organisation
+  github_repository_name = "auth-manager"
+}
