@@ -340,7 +340,7 @@ module "public_ecr_github_actions_upload_credentials_notebook_service" {
 module "obi_notebook_image" {
   source                     = "./private-ecr-repo"
   repository_name            = "obi-notebook-image"
-  allowed_to_pull_identities = ["arn:aws:iam::992382665735:role/eksctl-jupyterhub-svc-nodegroup-ng-NodeInstanceRole-aBItrpE4vQyX", "arn:aws:iam::671250183987:role/eksctl-jupyterhub-svc-nodegroup-ng-NodeInstanceRole-6yJ0qhsCTcMr"]
+  allowed_to_pull_identities = ["arn:aws:iam::992382665735:role/eksctl-jupyterhub-svc-nodegroup-ng-NodeInstanceRole-aBItrpE4vQyX", "arn:aws:iam::671250183987:role/eksctl-jupyterhub-svc-nodegroup-ng-NodeInstanceRole-lRE13l4nvvNv"]
 }
 
 module "private_ecr_github_actions_upload_credentials_obi-notebook_image" {
