@@ -368,18 +368,32 @@ module "private_ecr_github_actions_upload_credentials_launch_system" {
   github_repository_name = "launch-system"
 }
 
+module "launch_api" {
+  source = "./private-ecr-repo"
+
+  repository_name            = "launch-system/api"
+  allowed_to_pull_identities = ["arn:aws:iam::009203151042:role/launch20251017061000092500000003"]
+}
+
+module "launch_orchestrator" {
+  source = "./private-ecr-repo"
+
+  repository_name            = "launch-system/orchestrator"
+  allowed_to_pull_identities = ["arn:aws:iam::009203151042:role/launch20251017061000092500000003"]
+}
+
 module "launch_executor" {
   source = "./private-ecr-repo"
 
-  repository_name            = "launch-executor"
+  repository_name            = "launch-system/default-executor"
   allowed_to_pull_identities = ["arn:aws:iam::009203151042:role/launch20251017061000092500000003"]
 }
 
 module "private_ecr_github_actions_upload_credentials_launch_executor" {
   source = "./private-ecr-upload-credentials"
 
-  iam_user_name          = "github_actions_upload_user_launch_executor"
-  ecr_repository_name    = module.launch_executor.repository_name
+  iam_user_name          = "github_actions_upload_user_launch_containers"
+  ecr_repository_name    = "launch-system*"
   github_organisation    = local.github_organisation
   github_repository_name = "launch-system" # it is in the same repo as launch-system, this is not a typo
 }
