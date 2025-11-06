@@ -359,15 +359,6 @@ module "launch_system" {
   allowed_to_pull_identities = ["arn:aws:iam::992382665735:role/launch20251017122840582600000005"]
 }
 
-module "private_ecr_github_actions_upload_credentials_launch_system" {
-  source = "./private-ecr-upload-credentials"
-
-  iam_user_name          = "github_actions_upload_user_launch_system"
-  ecr_repository_name    = module.launch_system.repository_name
-  github_organisation    = local.github_organisation
-  github_repository_name = "launch-system"
-}
-
 module "launch_api" {
   source = "./private-ecr-repo"
 
@@ -389,7 +380,7 @@ module "launch_executor" {
   allowed_to_pull_identities = ["arn:aws:iam::009203151042:role/launch20251017061000092500000003"]
 }
 
-module "private_ecr_github_actions_upload_credentials_launch_executor" {
+module "private_ecr_github_actions_upload_credentials_launch_system_family" {
   source = "./private-ecr-upload-credentials"
 
   iam_user_name          = "github_actions_upload_user_launch_containers"
