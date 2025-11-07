@@ -389,6 +389,12 @@ module "private_ecr_github_actions_upload_credentials_launch_system_family" {
   github_repository_name = "launch-system" # it is in the same repo as launch-system, this is not a typo
 }
 
+module "private_ecr_download_credentials_launch_system_family" {
+  source = "./private-ecr-download-credentials"
+
+  ecr_repository_name = "launch-system*"
+}
+
 module "auth_manager" {
   source = "./private-ecr-repo"
 

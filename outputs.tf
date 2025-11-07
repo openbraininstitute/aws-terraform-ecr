@@ -148,3 +148,13 @@ output "private_ecr_github_actions_upload_credentials_obi_auth_manager_secret_ac
   value     = module.private_ecr_github_actions_upload_credentials_auth_manager.privateecr_upload_secret_access_key
   sensitive = true
 }
+
+output "private_ecr_download_credentials_launch_family_access_key_id" {
+  value     = module.private_ecr_download_credentials_launch_system_family.access_key_id
+  sensitive = true
+}
+
+output "private_ecr_download_credentials_launch_family_secret_access_key" {
+  value     = module.private_ecr_download_credentials_launch_system_family.secret_access_key
+  sensitive = true
+}
