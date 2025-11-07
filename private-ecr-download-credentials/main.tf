@@ -1,6 +1,6 @@
 locals {
   sanitized_repo_name = replace(var.ecr_repository_name, "*", "")
-  iam_user_name       = "azure_download_${local.sanitized_repo_name}"
+  iam_user_name       = "download_${local.sanitized_repo_name}"
 }
 
 resource "aws_iam_user" "download_user" {
@@ -24,15 +24,21 @@ resource "aws_iam_policy" "download_policy" {
           "ecr:GetDownloadUrlForLayer",
           "ecr:BatchGetImage",
           "ecr:BatchCheckLayerAvailability",
-          "ecr:GetAuthorizationToken"
         ]
         Resource = ["arn:aws:ecr:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:repository/${var.ecr_repository_name}"]
+      },
+      {
+        Effect = "Allow"
+        Action = [
+          "ecr:GetAuthorizationToken"
+        ]
+        Resource = "*"
       }
     ]
   })
 }
 
-resource "aws_iam_user_policy_attachment" "azure_download_policy_attachment" {
+resource "aws_iam_user_policy_attachment" "download_policy_attachment" {
   user       = aws_iam_user.download_user.name
   policy_arn = aws_iam_policy.download_policy.arn
 }
