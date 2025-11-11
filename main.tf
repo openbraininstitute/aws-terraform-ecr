@@ -13,7 +13,6 @@ locals {
   github_organisation = "openbraininstitute"
 }
 
-
 module "iam_github_oidc_provider" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-github-oidc-provider"
   version = "v5.60.0"
@@ -350,6 +349,21 @@ module "private_ecr_github_actions_upload_credentials_obi-notebook_image" {
   ecr_repository_name    = module.obi_notebook_image.repository_name
   github_organisation    = local.github_organisation
   github_repository_name = "obi-notebook-image"
+}
+
+module "neuroagent" {
+  source                     = "./private-ecr-repo"
+  repository_name            = "neuroagent"
+  allowed_to_pull_identities = ["arn:aws:iam::992382665735:role/ecs-service-agent-2024102309133921180000000e", "arn:aws:iam::671250183987:role/ecs-service-agent-20240524155002883400000004"]
+}
+
+module "private_ecr_github_actions_upload_credentials_neuroagent" {
+  source = "./private-ecr-upload-credentials"
+
+  iam_user_name          = "github_actions_upload_user_neuroagent"
+  ecr_repository_name    = module.neuroagent.repository_name
+  github_organisation    = local.github_organisation
+  github_repository_name = "neuroagent"
 }
 
 module "launch_system" {
