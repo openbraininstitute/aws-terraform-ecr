@@ -370,7 +370,7 @@ module "launch_system" {
   source = "./private-ecr-repo"
 
   repository_name            = "launch-system"
-  allowed_to_pull_identities = ["arn:aws:iam::992382665735:role/launch20251017122840582600000005"]
+  allowed_to_pull_identities = ["arn:aws:iam::992382665735:role/launch20251017122840582600000005", "arn:aws:iam::671250183987:role/launch20251028124644152500000004"]
 }
 
 module "launch_api" {
