@@ -413,7 +413,7 @@ module "auth_manager" {
   source = "./private-ecr-repo"
 
   repository_name            = "auth-manager"
-  allowed_to_pull_identities = ["arn:aws:iam::992382665735:role/auth_manager20251030104403745100000003"] # prod one still missing
+  allowed_to_pull_identities = ["arn:aws:iam::992382665735:role/auth_manager20251030104403745100000003", "arn:aws:iam::671250183987:role/auth_manager20251112133557154300000002"]
 }
 
 module "private_ecr_github_actions_upload_credentials_auth_manager" {
