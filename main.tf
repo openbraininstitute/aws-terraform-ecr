@@ -369,29 +369,37 @@ module "private_ecr_github_actions_upload_credentials_neuroagent" {
 module "launch_system" {
   source = "./private-ecr-repo"
 
-  repository_name            = "launch-system"
-  allowed_to_pull_identities = ["arn:aws:iam::992382665735:role/launch20251017122840582600000005", "arn:aws:iam::671250183987:role/launch20251028124644152500000004"]
+  repository_name = "launch-system"
+  allowed_to_pull_identities = [
+    "arn:aws:iam::671250183987:role/launch20251028124644152500000004", # production
+  ]
 }
 
 module "launch_api" {
   source = "./private-ecr-repo"
 
-  repository_name            = "launch-system/api"
-  allowed_to_pull_identities = ["arn:aws:iam::009203151042:role/launch20251017061000092500000003"]
+  repository_name = "launch-system/api"
+  allowed_to_pull_identities = [
+    "arn:aws:iam::992382665735:role/launch_system_api20251120132453126500000006", # staging
+  ]
 }
 
 module "launch_orchestrator" {
   source = "./private-ecr-repo"
 
-  repository_name            = "launch-system/orchestrator"
-  allowed_to_pull_identities = ["arn:aws:iam::009203151042:role/launch20251017061000092500000003"]
+  repository_name = "launch-system/orchestrator"
+  allowed_to_pull_identities = [
+    "arn:aws:iam::992382665735:role/launch_system_orchestrator20251120132453283700000008", # staging
+  ]
 }
 
 module "launch_executor" {
   source = "./private-ecr-repo"
 
-  repository_name            = "launch-system/default-executor"
-  allowed_to_pull_identities = ["arn:aws:iam::009203151042:role/launch20251017061000092500000003"]
+  repository_name = "launch-system/default-executor"
+  allowed_to_pull_identities = [
+    "arn:aws:iam::992382665735:role/launch_system_executor20251120132453317700000009", # staging
+  ]
 }
 
 module "private_ecr_github_actions_upload_credentials_launch_system_family" {
