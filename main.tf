@@ -340,9 +340,9 @@ module "obi_notebook_image" {
   source          = "./private-ecr-repo"
   repository_name = "obi-notebook-image"
   allowed_to_pull_identities = [
-    "arn:aws:iam::992382665735:role/eksctl-jupyterhub-svc-nodegroup-ng-NodeInstanceRole-aBItrpE4vQyX", # old EKS in separate VPC, to be removed
-    "arn:aws:iam::671250183987:role/eksctl-jupyterhub-svc-nodegroup-ng-NodeInstanceRole-lRE13l4nvvNv",
-    "arn:aws:iam::992382665735:role/eksctl-jupyterhub-nodegroup-ng-xla-NodeInstanceRole-jqmA86LRTPiy" # new EKS within main VPC
+    "arn:aws:iam::671250183987:role/eksctl-jupyterhub-svc-nodegroup-ng-NodeInstanceRole-lRE13l4nvvNv", # old EKS in separate VPC in prod, to be removed
+    "arn:aws:iam::992382665735:role/eksctl-jupyterhub-nodegroup-ng-xla-NodeInstanceRole-jqmA86LRTPiy", # EKS within main VPC in staging
+    "arn:aws:iam::671250183987:role/eksctl-jupyterhub-nodegroup-ng-xla-NodeInstanceRole-lvtTZUQuSGQW"  # new EKS within main VPC for production
   ]
 }
 
