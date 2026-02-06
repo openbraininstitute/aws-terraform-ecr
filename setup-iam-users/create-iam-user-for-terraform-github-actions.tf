@@ -94,6 +94,20 @@ resource "aws_iam_user_policy" "terraform_ecr_github_actions_policy" {
           "iam:*"
         ]
         Resource = "*"
+      },
+      {
+        Effect = "Allow"
+        Action = [
+          "codeartifact:*"
+        ]
+        Resource = "*"
+      },
+      {
+        Effect = "Allow"
+        Action = [
+          "sts:GetServiceBearerToken"
+        ]
+        Resource = "*"
       }
     ]
   })
