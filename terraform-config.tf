@@ -17,3 +17,13 @@ provider "aws" {
     }
   }
 }
+
+provider "aws" {
+  alias  = "codeartifact"
+  region = "us-east-1"
+  default_tags {
+    tags = {
+      SBO_Billing = "codeartifact"
+    }
+  }
+}
