@@ -184,3 +184,8 @@ output "codeartifact_github_roles" {
   description = "Map of GitHub repos to their OIDC role ARNs"
   value       = module.codeartifact.github_roles
 }
+
+output "codeartifact_github_read_role_arn" {
+  description = "Read-only OIDC role ARN for all GitHub repos"
+  value       = module.codeartifact.github_read_role_arn
+}

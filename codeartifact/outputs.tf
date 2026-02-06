@@ -33,3 +33,8 @@ output "github_roles" {
     }
   }
 }
+
+output "github_read_role_arn" {
+  description = "Read-only OIDC role ARN for all GitHub repos in the organization"
+  value       = aws_iam_role.github_actions_read.arn
+}
