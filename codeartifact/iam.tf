@@ -117,3 +117,34 @@ resource "aws_iam_role_policy_attachment" "github_actions_publish" {
   role       = aws_iam_role.github_actions_publish[each.key].name
   policy_arn = aws_iam_policy.repo_publish[each.value.ca_repo].arn
 }
+
+# Read-only role for all GitHub repos in the organization
+resource "aws_iam_role" "github_actions_read" {
+  name = "gh_codeartifact_read_all"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Effect = "Allow",
+        Principal = {
+          Federated = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:oidc-provider/token.actions.githubusercontent.com"
+        },
+        Action = "sts:AssumeRoleWithWebIdentity",
+        Condition = {
+          StringLike = {
+            "token.actions.githubusercontent.com:sub" = "repo:${var.github_organisation}/*:*"
+          },
+          StringEquals = {
+            "token.actions.githubusercontent.com:aud" = "sts.amazonaws.com"
+          }
+        }
+      }
+    ]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "github_actions_read" {
+  role       = aws_iam_role.github_actions_read.name
+  policy_arn = aws_iam_policy.codeartifact_read.arn
+}
