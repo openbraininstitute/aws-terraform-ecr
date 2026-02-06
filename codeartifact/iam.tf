@@ -69,7 +69,7 @@ resource "aws_iam_policy" "repo_publish" {
           "codeartifact:PublishPackageVersion",
           "codeartifact:PutPackageMetadata"
         ]
-        Resource = aws_codeartifact_repository.repos[each.key].arn
+        Resource = "arn:aws:codeartifact:${var.aws_region}:${data.aws_caller_identity.current.account_id}:package/${var.domain_name}/${each.key}/pypi//*"
       },
       {
         Effect   = "Allow"
