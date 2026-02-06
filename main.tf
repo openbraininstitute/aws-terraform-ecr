@@ -18,6 +18,29 @@ module "iam_github_oidc_provider" {
   version = "v5.60.0"
 }
 
+module "codeartifact" {
+  source = "./codeartifact"
+
+  domain_name         = local.github_organisation
+  aws_region          = "us-east-1"
+  github_organisation = local.github_organisation
+
+  repositories = {
+    pypi-prod = {
+      external_connection     = "public:pypi"
+      github_repository_names = ["Ultraliser"]
+    }
+    pypi-dev = {
+      external_connection     = "public:pypi"
+      github_repository_names = ["Ultraliser"]
+    }
+  }
+
+  providers = {
+    aws = aws.codeartifact
+  }
+}
+
 module "obi-one" {
   source = "./public-ecr-repo"
 
