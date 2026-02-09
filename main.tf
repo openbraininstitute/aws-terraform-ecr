@@ -393,15 +393,6 @@ module "private_ecr_github_actions_upload_credentials_neuroagent" {
   github_repository_name = "neuroagent"
 }
 
-module "launch_system" {
-  source = "./private-ecr-repo"
-
-  repository_name = "launch-system"
-  allowed_to_pull_identities = [
-    "arn:aws:iam::671250183987:role/launch20251028124644152500000004", # production
-  ]
-}
-
 module "launch_api" {
   source = "./private-ecr-repo"
 
