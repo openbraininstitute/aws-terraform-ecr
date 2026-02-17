@@ -44,13 +44,15 @@ module "codeartifact" {
 module "obi-one" {
   source = "./public-ecr-repo"
 
-  repository_name   = "obi-one"
-  short_name        = "obi-one"
-  short_description = "obi-one is a standardized library of functions"
-  github_repo       = "https://github.com/openbraininstitute/obi-one"
-  long_description  = "obi-one is a standardized library of functions + workflows for biophysically-detailed brain modeling"
-  architectures     = ["x86-64"]
-  operating_systems = ["Linux"]
+  repository_name                     = "obi-one"
+  short_name                          = "obi-one"
+  short_description                   = "obi-one is a standardized library of functions"
+  github_repo                         = "https://github.com/openbraininstitute/obi-one"
+  long_description                    = "obi-one is a standardized library of functions + workflows for biophysically-detailed brain modeling"
+  architectures                       = ["x86-64"]
+  operating_systems                   = ["Linux"]
+  lifecycle_policy_max_image_count    = 10
+  lifecycle_policy_max_image_age_days = 30
 }
 
 module "public_ecr_github_actions_upload_credentials_obi_one" {
@@ -65,13 +67,15 @@ module "public_ecr_github_actions_upload_credentials_obi_one" {
 module "obi-generative-gui" {
   source = "./public-ecr-repo"
 
-  repository_name   = "obi-generative-gui"
-  short_name        = "obi-generative-gui"
-  short_description = "obi-generative-gui"
-  github_repo       = "https://github.com/openbraininstitute/obi-generative-gui"
-  long_description  = "obi-generative-gui"
-  architectures     = ["x86-64"]
-  operating_systems = ["Linux"]
+  repository_name                     = "obi-generative-gui"
+  short_name                          = "obi-generative-gui"
+  short_description                   = "obi-generative-gui"
+  github_repo                         = "https://github.com/openbraininstitute/obi-generative-gui"
+  long_description                    = "obi-generative-gui"
+  architectures                       = ["x86-64"]
+  operating_systems                   = ["Linux"]
+  lifecycle_policy_max_image_count    = 10
+  lifecycle_policy_max_image_age_days = 30
 }
 
 module "public_ecr_github_actions_upload_credentials_obi_generative_gui" {
@@ -86,13 +90,15 @@ module "public_ecr_github_actions_upload_credentials_obi_generative_gui" {
 module "workflow" {
   source = "./public-ecr-repo"
 
-  repository_name   = "workflow"
-  short_name        = "Workflow"
-  short_description = "Workflow engine used by the Open Brain Institute"
-  github_repo       = "https://github.com/openbraininstitute/bbp-workflow/"
-  long_description  = "The workflow engine is used to run automated pipelines of batch jobs using python and the luigi framework."
-  architectures     = ["x86-64"]
-  operating_systems = ["Linux"]
+  repository_name                     = "workflow"
+  short_name                          = "Workflow"
+  short_description                   = "Workflow engine used by the Open Brain Institute"
+  github_repo                         = "https://github.com/openbraininstitute/bbp-workflow/"
+  long_description                    = "The workflow engine is used to run automated pipelines of batch jobs using python and the luigi framework."
+  architectures                       = ["x86-64"]
+  operating_systems                   = ["Linux"]
+  lifecycle_policy_max_image_count    = 10
+  lifecycle_policy_max_image_age_days = 30
 }
 
 module "public_ecr_github_actions_upload_credentials_workflow" {
@@ -107,13 +113,15 @@ module "public_ecr_github_actions_upload_credentials_workflow" {
 module "core_web_app" {
   source = "./public-ecr-repo"
 
-  repository_name   = "core-web-app"
-  short_name        = "Core web application"
-  short_description = "Core web application used by the Open Brain Institute"
-  github_repo       = "https://github.com/openbraininstitute/core-web-app/"
-  long_description  = "The core web application is the central piece of the Open Brain Institute web platform which gives access to the other components such as the virtual labs."
-  architectures     = ["x86-64"]
-  operating_systems = ["Linux"]
+  repository_name                     = "core-web-app"
+  short_name                          = "Core web application"
+  short_description                   = "Core web application used by the Open Brain Institute"
+  github_repo                         = "https://github.com/openbraininstitute/core-web-app/"
+  long_description                    = "The core web application is the central piece of the Open Brain Institute web platform which gives access to the other components such as the virtual labs."
+  architectures                       = ["x86-64"]
+  operating_systems                   = ["Linux"]
+  lifecycle_policy_max_image_count    = 10
+  lifecycle_policy_max_image_age_days = 30
 }
 
 module "public_ecr_github_actions_upload_credentials_core_web_app" {
@@ -130,13 +138,15 @@ module "public_ecr_github_actions_upload_credentials_core_web_app" {
 module "single_cell_simulator" {
   source = "./public-ecr-repo"
 
-  repository_name   = "single-cell-simulator"
-  short_name        = "Single Cell Simulator"
-  short_description = "Single Cell Simulator used by the Open Brain Institute"
-  github_repo       = "https://github.com/openbraininstitute/BlueNaaS-SingleCell/"
-  long_description  = "This application is used within the Open Brain Institute web platform to simulate single cells. It's based on BlueNaaS."
-  architectures     = ["x86-64"]
-  operating_systems = ["Linux"]
+  repository_name                     = "single-cell-simulator"
+  short_name                          = "Single Cell Simulator"
+  short_description                   = "Single Cell Simulator used by the Open Brain Institute"
+  github_repo                         = "https://github.com/openbraininstitute/BlueNaaS-SingleCell/"
+  long_description                    = "This application is used within the Open Brain Institute web platform to simulate single cells. It's based on BlueNaaS."
+  architectures                       = ["x86-64"]
+  operating_systems                   = ["Linux"]
+  lifecycle_policy_max_image_count    = 10
+  lifecycle_policy_max_image_age_days = 30
 }
 
 module "public_ecr_github_actions_upload_credentials_single_cell_simulator" {
@@ -151,13 +161,15 @@ module "public_ecr_github_actions_upload_credentials_single_cell_simulator" {
 module "hpc_resource_provisioner" {
   source = "./public-ecr-repo"
 
-  repository_name   = "hpc-resource-provisioner"
-  short_name        = "HPC Resource Provisioner"
-  short_description = "Manages the creation and deletion of parallel custers in AWS"
-  github_repo       = "https://github.com/openbraininstitute/hpc-resource-provisioner/"
-  long_description  = "The HPC Resource Provisioner is a small application used by the Open Brain Institute that offers an API to manage the creation and deletion of parallel-clusters in AWS."
-  architectures     = ["x86-64"]
-  operating_systems = ["Linux"]
+  repository_name                     = "hpc-resource-provisioner"
+  short_name                          = "HPC Resource Provisioner"
+  short_description                   = "Manages the creation and deletion of parallel custers in AWS"
+  github_repo                         = "https://github.com/openbraininstitute/hpc-resource-provisioner/"
+  long_description                    = "The HPC Resource Provisioner is a small application used by the Open Brain Institute that offers an API to manage the creation and deletion of parallel-clusters in AWS."
+  architectures                       = ["x86-64"]
+  operating_systems                   = ["Linux"]
+  lifecycle_policy_max_image_count    = 10
+  lifecycle_policy_max_image_age_days = 30
 }
 
 module "public_ecr_github_actions_upload_credentials_hpc_resource_provisioner" {
@@ -172,13 +184,15 @@ module "public_ecr_github_actions_upload_credentials_hpc_resource_provisioner" {
 module "kg_inference_api" {
   source = "./public-ecr-repo"
 
-  repository_name   = "kg-inference-api"
-  short_name        = "KG Inference API"
-  short_description = "Knowledge Graph Inference API, used by the Open Brain Institute"
-  github_repo       = "https://github.com/openbraininstitute/kg-inference-api/"
-  long_description  = "The KG Inference API is designed to infer morphologies based on various input characteristics. This API leverages knowledge graphs and inference techniques to provide insights into the structure and form of entities within a defined context."
-  architectures     = ["x86-64"]
-  operating_systems = ["Linux"]
+  repository_name                     = "kg-inference-api"
+  short_name                          = "KG Inference API"
+  short_description                   = "Knowledge Graph Inference API, used by the Open Brain Institute"
+  github_repo                         = "https://github.com/openbraininstitute/kg-inference-api/"
+  long_description                    = "The KG Inference API is designed to infer morphologies based on various input characteristics. This API leverages knowledge graphs and inference techniques to provide insights into the structure and form of entities within a defined context."
+  architectures                       = ["x86-64"]
+  operating_systems                   = ["Linux"]
+  lifecycle_policy_max_image_count    = 10
+  lifecycle_policy_max_image_age_days = 30
 }
 
 module "public_ecr_github_actions_upload_credentials_kg_inference_api" {
@@ -193,13 +207,15 @@ module "public_ecr_github_actions_upload_credentials_kg_inference_api" {
 module "me_model_analysis" {
   source = "./public-ecr-repo"
 
-  repository_name   = "me-model-analysis"
-  short_name        = "Morpho-Electrical Model Analysis"
-  short_description = "Morpho-Electrical model analysis or single-cell model analysis, used by the Open Brain Institute"
-  github_repo       = "https://github.com/openbraininstitute/kg-inference-api/"
-  long_description  = "This container provides Morpho-Electrical model analysis or single-cell model analysis for the Open Brain Institute platform. The services executes a series of simulation experiments to compute different features of the model which can be used to determine how good a model is."
-  architectures     = ["x86-64"]
-  operating_systems = ["Linux"]
+  repository_name                     = "me-model-analysis"
+  short_name                          = "Morpho-Electrical Model Analysis"
+  short_description                   = "Morpho-Electrical model analysis or single-cell model analysis, used by the Open Brain Institute"
+  github_repo                         = "https://github.com/openbraininstitute/kg-inference-api/"
+  long_description                    = "This container provides Morpho-Electrical model analysis or single-cell model analysis for the Open Brain Institute platform. The services executes a series of simulation experiments to compute different features of the model which can be used to determine how good a model is."
+  architectures                       = ["x86-64"]
+  operating_systems                   = ["Linux"]
+  lifecycle_policy_max_image_count    = 10
+  lifecycle_policy_max_image_age_days = 30
 }
 
 module "public_ecr_github_actions_upload_credentials_me_model_analysis" {
@@ -214,13 +230,15 @@ module "public_ecr_github_actions_upload_credentials_me_model_analysis" {
 module "accounting_service" {
   source = "./public-ecr-repo"
 
-  repository_name   = "accounting-service"
-  short_name        = "Accounting Service"
-  short_description = "The accounting service of the Open Brain Institute"
-  github_repo       = "https://github.com/openbraininstitute/accounting-service/"
-  long_description  = "Handles accounting within the Open Brain Institute platform"
-  architectures     = ["x86-64"]
-  operating_systems = ["Linux"]
+  repository_name                     = "accounting-service"
+  short_name                          = "Accounting Service"
+  short_description                   = "The accounting service of the Open Brain Institute"
+  github_repo                         = "https://github.com/openbraininstitute/accounting-service/"
+  long_description                    = "Handles accounting within the Open Brain Institute platform"
+  architectures                       = ["x86-64"]
+  operating_systems                   = ["Linux"]
+  lifecycle_policy_max_image_count    = 10
+  lifecycle_policy_max_image_age_days = 30
 }
 
 module "public_ecr_github_actions_upload_credentials_accounting_service" {
@@ -235,13 +253,15 @@ module "public_ecr_github_actions_upload_credentials_accounting_service" {
 module "sonata_cell_position" {
   source = "./public-ecr-repo"
 
-  repository_name   = "sonata-cell-position"
-  short_name        = "Sonata Cell Position"
-  short_description = "The accounting service of the Open Brain Institute"
-  github_repo       = "https://github.com/openbraininstitute/sonata-cell-position/"
-  long_description  = "Sonata Cell Position application, part of the Open Brain Institute platform"
-  architectures     = ["x86-64"]
-  operating_systems = ["Linux"]
+  repository_name                     = "sonata-cell-position"
+  short_name                          = "Sonata Cell Position"
+  short_description                   = "The accounting service of the Open Brain Institute"
+  github_repo                         = "https://github.com/openbraininstitute/sonata-cell-position/"
+  long_description                    = "Sonata Cell Position application, part of the Open Brain Institute platform"
+  architectures                       = ["x86-64"]
+  operating_systems                   = ["Linux"]
+  lifecycle_policy_max_image_count    = 10
+  lifecycle_policy_max_image_age_days = 30
 }
 
 module "public_ecr_github_actions_upload_credentials_sonata_cell_position" {
@@ -256,13 +276,15 @@ module "public_ecr_github_actions_upload_credentials_sonata_cell_position" {
 module "virtual_lab_api" {
   source = "./public-ecr-repo"
 
-  repository_name   = "virtual-lab-api"
-  short_name        = "Virtual Lab API"
-  short_description = "REST api that is used to manage virtual labs and their projects, primarily by the core-web-app"
-  github_repo       = "https://github.com/openbraininstitute/virtual-lab-api/"
-  long_description  = "This container provides the REST api that is used to manage virtual labs and their projects, primarily by the core-web-app."
-  architectures     = ["x86-64"]
-  operating_systems = ["Linux"]
+  repository_name                     = "virtual-lab-api"
+  short_name                          = "Virtual Lab API"
+  short_description                   = "REST api that is used to manage virtual labs and their projects, primarily by the core-web-app"
+  github_repo                         = "https://github.com/openbraininstitute/virtual-lab-api/"
+  long_description                    = "This container provides the REST api that is used to manage virtual labs and their projects, primarily by the core-web-app."
+  architectures                       = ["x86-64"]
+  operating_systems                   = ["Linux"]
+  lifecycle_policy_max_image_count    = 10
+  lifecycle_policy_max_image_age_days = 30
 }
 
 module "public_ecr_github_actions_upload_credentials_virtual_lab_api" {
@@ -277,13 +299,15 @@ module "public_ecr_github_actions_upload_credentials_virtual_lab_api" {
 module "thumbnail_generation_api" {
   source = "./public-ecr-repo"
 
-  repository_name   = "thumbnail-generation-api"
-  short_name        = "Thumbnail Generation API"
-  short_description = "Service for generating thumbnails of morphologies/electrophysiologies and the soma of morphologies"
-  github_repo       = "https://github.com/openbraininstitute/thumbnail-generation-api/"
-  long_description  = "The Thumbnail Generation API provides the service for generating thumbnails of morphologies/electrophysiologies and the soma of morphologies. The API is designed to receive a content_url from a Nexus resource (morphology or electrophysiology) and produce a corresponding thumbnail image."
-  architectures     = ["x86-64"]
-  operating_systems = ["Linux"]
+  repository_name                     = "thumbnail-generation-api"
+  short_name                          = "Thumbnail Generation API"
+  short_description                   = "Service for generating thumbnails of morphologies/electrophysiologies and the soma of morphologies"
+  github_repo                         = "https://github.com/openbraininstitute/thumbnail-generation-api/"
+  long_description                    = "The Thumbnail Generation API provides the service for generating thumbnails of morphologies/electrophysiologies and the soma of morphologies. The API is designed to receive a content_url from a Nexus resource (morphology or electrophysiology) and produce a corresponding thumbnail image."
+  architectures                       = ["x86-64"]
+  operating_systems                   = ["Linux"]
+  lifecycle_policy_max_image_count    = 10
+  lifecycle_policy_max_image_age_days = 30
 }
 
 module "public_ecr_github_actions_upload_credentials_thumbnail_generation_api" {
@@ -298,13 +322,15 @@ module "public_ecr_github_actions_upload_credentials_thumbnail_generation_api" {
 module "entitycore" {
   source = "./public-ecr-repo"
 
-  repository_name   = "entitycore"
-  short_name        = "Entity Core"
-  short_description = "Entity and File manager for OBI"
-  github_repo       = "https://github.com/openbraininstitute/entitycore/"
-  long_description  = "Entity and File manager for OBI"
-  architectures     = ["x86-64"]
-  operating_systems = ["Linux"]
+  repository_name                     = "entitycore"
+  short_name                          = "Entity Core"
+  short_description                   = "Entity and File manager for OBI"
+  github_repo                         = "https://github.com/openbraininstitute/entitycore/"
+  long_description                    = "Entity and File manager for OBI"
+  architectures                       = ["x86-64"]
+  operating_systems                   = ["Linux"]
+  lifecycle_policy_max_image_count    = 10
+  lifecycle_policy_max_image_age_days = 30
 }
 
 module "public_ecr_github_actions_upload_credentials_entitycore" {
@@ -320,13 +346,15 @@ module "public_ecr_github_actions_upload_credentials_entitycore" {
 module "neurodamus" {
   source = "./public-ecr-repo"
 
-  repository_name   = "neurodamus"
-  short_name        = "Neurodamus"
-  short_description = "Neurodamus is a BBP Simulation Control application for Neuron."
-  github_repo       = "https://github.com/openbraininstitute/neurodamus/"
-  long_description  = "Neurodamus is a BBP Simulation Control application for Neuron."
-  architectures     = ["x86-64"]
-  operating_systems = ["Linux"]
+  repository_name                     = "neurodamus"
+  short_name                          = "Neurodamus"
+  short_description                   = "Neurodamus is a BBP Simulation Control application for Neuron."
+  github_repo                         = "https://github.com/openbraininstitute/neurodamus/"
+  long_description                    = "Neurodamus is a BBP Simulation Control application for Neuron."
+  architectures                       = ["x86-64"]
+  operating_systems                   = ["Linux"]
+  lifecycle_policy_max_image_count    = 10
+  lifecycle_policy_max_image_age_days = 30
 }
 
 module "public_ecr_github_actions_upload_credentials_neurodamus" {
@@ -341,13 +369,15 @@ module "public_ecr_github_actions_upload_credentials_neurodamus" {
 module "notebook_service" {
   source = "./public-ecr-repo"
 
-  repository_name   = "notebook-service"
-  short_name        = "Notebook Service"
-  short_description = "The Notebook Service allows launching notebooks within the platform."
-  github_repo       = "https://github.com/openbraininstitute/notebook-service/"
-  long_description  = "The Notebook Service allows launching notebooks within the platform."
-  architectures     = ["x86-64"]
-  operating_systems = ["Linux"]
+  repository_name                     = "notebook-service"
+  short_name                          = "Notebook Service"
+  short_description                   = "The Notebook Service allows launching notebooks within the platform."
+  github_repo                         = "https://github.com/openbraininstitute/notebook-service/"
+  long_description                    = "The Notebook Service allows launching notebooks within the platform."
+  architectures                       = ["x86-64"]
+  operating_systems                   = ["Linux"]
+  lifecycle_policy_max_image_count    = 10
+  lifecycle_policy_max_image_age_days = 30
 }
 
 module "public_ecr_github_actions_upload_credentials_notebook_service" {
@@ -367,6 +397,8 @@ module "obi_notebook_image" {
     "arn:aws:iam::992382665735:role/eksctl-jupyterhub-nodegroup-ng-xla-NodeInstanceRole-TqeVopvkuh0l", # EKS within main VPC in staging
     "arn:aws:iam::671250183987:role/eksctl-jupyterhub-nodegroup-ng-xla-NodeInstanceRole-ZlwgewinoBDn"  # new EKS within main VPC for production
   ]
+  lifecycle_policy_max_image_count    = 10
+  lifecycle_policy_max_image_age_days = 30
 }
 
 module "private_ecr_github_actions_upload_credentials_obi-notebook_image" {
@@ -379,9 +411,11 @@ module "private_ecr_github_actions_upload_credentials_obi-notebook_image" {
 }
 
 module "neuroagent" {
-  source                     = "./private-ecr-repo"
-  repository_name            = "neuroagent"
-  allowed_to_pull_identities = ["arn:aws:iam::992382665735:role/ecs-service-agent-2024102309133921180000000e", "arn:aws:iam::671250183987:role/ecs-service-agent-20240524155002883400000004"]
+  source                              = "./private-ecr-repo"
+  repository_name                     = "neuroagent"
+  allowed_to_pull_identities          = ["arn:aws:iam::992382665735:role/ecs-service-agent-2024102309133921180000000e", "arn:aws:iam::671250183987:role/ecs-service-agent-20240524155002883400000004"]
+  lifecycle_policy_max_image_count    = 10
+  lifecycle_policy_max_image_age_days = 30
 }
 
 module "private_ecr_github_actions_upload_credentials_neuroagent" {
@@ -400,6 +434,8 @@ module "launch_api" {
   allowed_to_pull_identities = [
     "arn:aws:iam::992382665735:role/launch_system_api20251120132453126500000006", # staging
   ]
+  lifecycle_policy_max_image_count    = 10
+  lifecycle_policy_max_image_age_days = 30
 }
 
 module "launch_orchestrator" {
@@ -409,6 +445,8 @@ module "launch_orchestrator" {
   allowed_to_pull_identities = [
     "arn:aws:iam::992382665735:role/launch_system_orchestrator20251120132453283700000008", # staging
   ]
+  lifecycle_policy_max_image_count    = 10
+  lifecycle_policy_max_image_age_days = 30
 }
 
 module "launch_executor" {
@@ -418,6 +456,8 @@ module "launch_executor" {
   allowed_to_pull_identities = [
     "arn:aws:iam::992382665735:role/launch_system_executor20251120132453317700000009", # staging
   ]
+  lifecycle_policy_max_image_count    = 10
+  lifecycle_policy_max_image_age_days = 30
 }
 
 module "private_ecr_github_actions_upload_credentials_launch_system_family" {
@@ -438,8 +478,10 @@ module "private_ecr_download_credentials_launch_system_family" {
 module "auth_manager" {
   source = "./private-ecr-repo"
 
-  repository_name            = "auth-manager"
-  allowed_to_pull_identities = ["arn:aws:iam::992382665735:role/auth_manager20251030104403745100000003", "arn:aws:iam::671250183987:role/auth_manager20251112133557154300000002"]
+  repository_name                     = "auth-manager"
+  allowed_to_pull_identities          = ["arn:aws:iam::992382665735:role/auth_manager20251030104403745100000003", "arn:aws:iam::671250183987:role/auth_manager20251112133557154300000002"]
+  lifecycle_policy_max_image_count    = 10
+  lifecycle_policy_max_image_age_days = 30
 }
 
 module "private_ecr_github_actions_upload_credentials_auth_manager" {
