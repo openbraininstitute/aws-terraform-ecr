@@ -51,8 +51,6 @@ module "obi-one" {
   long_description                    = "obi-one is a standardized library of functions + workflows for biophysically-detailed brain modeling"
   architectures                       = ["x86-64"]
   operating_systems                   = ["Linux"]
-  lifecycle_policy_max_image_count    = 10
-  lifecycle_policy_max_image_age_days = 30
 }
 
 module "public_ecr_github_actions_upload_credentials_obi_one" {
@@ -74,8 +72,6 @@ module "obi-generative-gui" {
   long_description                    = "obi-generative-gui"
   architectures                       = ["x86-64"]
   operating_systems                   = ["Linux"]
-  lifecycle_policy_max_image_count    = 10
-  lifecycle_policy_max_image_age_days = 30
 }
 
 module "public_ecr_github_actions_upload_credentials_obi_generative_gui" {
@@ -97,8 +93,6 @@ module "workflow" {
   long_description                    = "The workflow engine is used to run automated pipelines of batch jobs using python and the luigi framework."
   architectures                       = ["x86-64"]
   operating_systems                   = ["Linux"]
-  lifecycle_policy_max_image_count    = 10
-  lifecycle_policy_max_image_age_days = 30
 }
 
 module "public_ecr_github_actions_upload_credentials_workflow" {
@@ -120,8 +114,6 @@ module "core_web_app" {
   long_description                    = "The core web application is the central piece of the Open Brain Institute web platform which gives access to the other components such as the virtual labs."
   architectures                       = ["x86-64"]
   operating_systems                   = ["Linux"]
-  lifecycle_policy_max_image_count    = 10
-  lifecycle_policy_max_image_age_days = 30
 }
 
 module "public_ecr_github_actions_upload_credentials_core_web_app" {
@@ -145,8 +137,6 @@ module "single_cell_simulator" {
   long_description                    = "This application is used within the Open Brain Institute web platform to simulate single cells. It's based on BlueNaaS."
   architectures                       = ["x86-64"]
   operating_systems                   = ["Linux"]
-  lifecycle_policy_max_image_count    = 10
-  lifecycle_policy_max_image_age_days = 30
 }
 
 module "public_ecr_github_actions_upload_credentials_single_cell_simulator" {
@@ -168,8 +158,6 @@ module "hpc_resource_provisioner" {
   long_description                    = "The HPC Resource Provisioner is a small application used by the Open Brain Institute that offers an API to manage the creation and deletion of parallel-clusters in AWS."
   architectures                       = ["x86-64"]
   operating_systems                   = ["Linux"]
-  lifecycle_policy_max_image_count    = 10
-  lifecycle_policy_max_image_age_days = 30
 }
 
 module "public_ecr_github_actions_upload_credentials_hpc_resource_provisioner" {
@@ -191,8 +179,6 @@ module "kg_inference_api" {
   long_description                    = "The KG Inference API is designed to infer morphologies based on various input characteristics. This API leverages knowledge graphs and inference techniques to provide insights into the structure and form of entities within a defined context."
   architectures                       = ["x86-64"]
   operating_systems                   = ["Linux"]
-  lifecycle_policy_max_image_count    = 10
-  lifecycle_policy_max_image_age_days = 30
 }
 
 module "public_ecr_github_actions_upload_credentials_kg_inference_api" {
@@ -214,8 +200,6 @@ module "me_model_analysis" {
   long_description                    = "This container provides Morpho-Electrical model analysis or single-cell model analysis for the Open Brain Institute platform. The services executes a series of simulation experiments to compute different features of the model which can be used to determine how good a model is."
   architectures                       = ["x86-64"]
   operating_systems                   = ["Linux"]
-  lifecycle_policy_max_image_count    = 10
-  lifecycle_policy_max_image_age_days = 30
 }
 
 module "public_ecr_github_actions_upload_credentials_me_model_analysis" {
@@ -237,8 +221,6 @@ module "accounting_service" {
   long_description                    = "Handles accounting within the Open Brain Institute platform"
   architectures                       = ["x86-64"]
   operating_systems                   = ["Linux"]
-  lifecycle_policy_max_image_count    = 10
-  lifecycle_policy_max_image_age_days = 30
 }
 
 module "public_ecr_github_actions_upload_credentials_accounting_service" {
@@ -260,8 +242,6 @@ module "sonata_cell_position" {
   long_description                    = "Sonata Cell Position application, part of the Open Brain Institute platform"
   architectures                       = ["x86-64"]
   operating_systems                   = ["Linux"]
-  lifecycle_policy_max_image_count    = 10
-  lifecycle_policy_max_image_age_days = 30
 }
 
 module "public_ecr_github_actions_upload_credentials_sonata_cell_position" {
@@ -283,8 +263,6 @@ module "virtual_lab_api" {
   long_description                    = "This container provides the REST api that is used to manage virtual labs and their projects, primarily by the core-web-app."
   architectures                       = ["x86-64"]
   operating_systems                   = ["Linux"]
-  lifecycle_policy_max_image_count    = 10
-  lifecycle_policy_max_image_age_days = 30
 }
 
 module "public_ecr_github_actions_upload_credentials_virtual_lab_api" {
@@ -306,8 +284,6 @@ module "thumbnail_generation_api" {
   long_description                    = "The Thumbnail Generation API provides the service for generating thumbnails of morphologies/electrophysiologies and the soma of morphologies. The API is designed to receive a content_url from a Nexus resource (morphology or electrophysiology) and produce a corresponding thumbnail image."
   architectures                       = ["x86-64"]
   operating_systems                   = ["Linux"]
-  lifecycle_policy_max_image_count    = 10
-  lifecycle_policy_max_image_age_days = 30
 }
 
 module "public_ecr_github_actions_upload_credentials_thumbnail_generation_api" {
@@ -329,8 +305,6 @@ module "entitycore" {
   long_description                    = "Entity and File manager for OBI"
   architectures                       = ["x86-64"]
   operating_systems                   = ["Linux"]
-  lifecycle_policy_max_image_count    = 10
-  lifecycle_policy_max_image_age_days = 30
 }
 
 module "public_ecr_github_actions_upload_credentials_entitycore" {
@@ -353,8 +327,6 @@ module "neurodamus" {
   long_description                    = "Neurodamus is a BBP Simulation Control application for Neuron."
   architectures                       = ["x86-64"]
   operating_systems                   = ["Linux"]
-  lifecycle_policy_max_image_count    = 10
-  lifecycle_policy_max_image_age_days = 30
 }
 
 module "public_ecr_github_actions_upload_credentials_neurodamus" {
@@ -376,8 +348,6 @@ module "notebook_service" {
   long_description                    = "The Notebook Service allows launching notebooks within the platform."
   architectures                       = ["x86-64"]
   operating_systems                   = ["Linux"]
-  lifecycle_policy_max_image_count    = 10
-  lifecycle_policy_max_image_age_days = 30
 }
 
 module "public_ecr_github_actions_upload_credentials_notebook_service" {
