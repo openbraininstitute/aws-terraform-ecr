@@ -62,48 +62,6 @@ module "public_ecr_github_actions_upload_credentials_obi_one" {
   github_repository_name = "obi-one"
 }
 
-module "obi-generative-gui" {
-  source = "./public-ecr-repo"
-
-  repository_name   = "obi-generative-gui"
-  short_name        = "obi-generative-gui"
-  short_description = "obi-generative-gui"
-  github_repo       = "https://github.com/openbraininstitute/obi-generative-gui"
-  long_description  = "obi-generative-gui"
-  architectures     = ["x86-64"]
-  operating_systems = ["Linux"]
-}
-
-module "public_ecr_github_actions_upload_credentials_obi_generative_gui" {
-  source = "./public-ecr-upload-credentials"
-
-  iam_user_name          = "github_actions_upload_user_obi_generative_gui"
-  ecr_repository_name    = module.obi-generative-gui.repository_name
-  github_organisation    = local.github_organisation
-  github_repository_name = "obi-generative-gui"
-}
-
-module "workflow" {
-  source = "./public-ecr-repo"
-
-  repository_name   = "workflow"
-  short_name        = "Workflow"
-  short_description = "Workflow engine used by the Open Brain Institute"
-  github_repo       = "https://github.com/openbraininstitute/bbp-workflow/"
-  long_description  = "The workflow engine is used to run automated pipelines of batch jobs using python and the luigi framework."
-  architectures     = ["x86-64"]
-  operating_systems = ["Linux"]
-}
-
-module "public_ecr_github_actions_upload_credentials_workflow" {
-  source = "./public-ecr-upload-credentials"
-
-  iam_user_name          = "github_actions_upload_user_workflow"
-  ecr_repository_name    = module.workflow.repository_name
-  github_organisation    = local.github_organisation
-  github_repository_name = "bbp-workflow"
-}
-
 module "core_web_app" {
   source = "./public-ecr-repo"
 
@@ -167,48 +125,6 @@ module "public_ecr_github_actions_upload_credentials_hpc_resource_provisioner" {
   ecr_repository_name    = module.hpc_resource_provisioner.repository_name
   github_organisation    = local.github_organisation
   github_repository_name = "BlueNaaS-SingleCell"
-}
-
-module "kg_inference_api" {
-  source = "./public-ecr-repo"
-
-  repository_name   = "kg-inference-api"
-  short_name        = "KG Inference API"
-  short_description = "Knowledge Graph Inference API, used by the Open Brain Institute"
-  github_repo       = "https://github.com/openbraininstitute/kg-inference-api/"
-  long_description  = "The KG Inference API is designed to infer morphologies based on various input characteristics. This API leverages knowledge graphs and inference techniques to provide insights into the structure and form of entities within a defined context."
-  architectures     = ["x86-64"]
-  operating_systems = ["Linux"]
-}
-
-module "public_ecr_github_actions_upload_credentials_kg_inference_api" {
-  source = "./public-ecr-upload-credentials"
-
-  iam_user_name          = "github_actions_upload_user_kg_inference_api"
-  ecr_repository_name    = module.kg_inference_api.repository_name
-  github_organisation    = local.github_organisation
-  github_repository_name = "BlueNaaS-SingleCell"
-}
-
-module "me_model_analysis" {
-  source = "./public-ecr-repo"
-
-  repository_name   = "me-model-analysis"
-  short_name        = "Morpho-Electrical Model Analysis"
-  short_description = "Morpho-Electrical model analysis or single-cell model analysis, used by the Open Brain Institute"
-  github_repo       = "https://github.com/openbraininstitute/kg-inference-api/"
-  long_description  = "This container provides Morpho-Electrical model analysis or single-cell model analysis for the Open Brain Institute platform. The services executes a series of simulation experiments to compute different features of the model which can be used to determine how good a model is."
-  architectures     = ["x86-64"]
-  operating_systems = ["Linux"]
-}
-
-module "public_ecr_github_actions_upload_credentials_me_model_analysis" {
-  source = "./public-ecr-upload-credentials"
-
-  iam_user_name          = "github_actions_upload_user_me_model_analysis"
-  ecr_repository_name    = module.me_model_analysis.repository_name
-  github_organisation    = local.github_organisation
-  github_repository_name = "me-model-analysis"
 }
 
 module "accounting_service" {
@@ -316,7 +232,6 @@ module "public_ecr_github_actions_upload_credentials_entitycore" {
   github_repository_name = "entitycore"
 }
 
-
 module "neurodamus" {
   source = "./public-ecr-repo"
 
@@ -364,7 +279,7 @@ module "obi_notebook_image" {
   repository_name = "obi-notebook-image"
   allowed_to_pull_identities = [
     "arn:aws:iam::992382665735:role/eksctl-jupyterhub-nodegroup-ng-xla-NodeInstanceRole-TqeVopvkuh0l", # EKS within main VPC in staging
-    "arn:aws:iam::671250183987:role/eksctl-jupyterhub-nodegroup-ng-xla-NodeInstanceRole-ZlwgewinoBDn"  # new EKS within main VPC for production
+    "arn:aws:iam::671250183987:role/eksctl-jupyterhub-nodegroup-ng-xla-NodeInstanceRole-ZlwgewinoBDn"  # EKS within main VPC for production
   ]
   lifecycle_policy_max_image_count    = 10
   lifecycle_policy_max_image_age_days = 30
