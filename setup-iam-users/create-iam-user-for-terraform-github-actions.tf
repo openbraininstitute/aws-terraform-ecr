@@ -15,7 +15,9 @@ resource "aws_iam_user_policy" "terraform_ecr_github_actions_policy" {
         Effect = "Allow"
         Action = [
           "ecr:CreateRepository",
+          "ecr:GetLifecyclePolicy",
           "ecr:PutLifecyclePolicy",
+          "ecr:DeleteLifecyclePolicy",
           "ecr:PutImageScanningConfiguration",
           "ecr:TagResource",
           "ecr:DeleteRepository",
