@@ -28,6 +28,10 @@ output "public_ecr_github_actions_upload_credentials_hpc_resource_provisioner_se
   sensitive = true
 }
 
+output "hpc_resource_provisioner_public_ecr_id" {
+  value = module.hpc_resource_provisioner.repository_id
+}
+
 output "public_ecr_github_actions_upload_credentials_accounting_service_access_key_id" {
   value     = module.public_ecr_github_actions_upload_credentials_accounting_service.publicecr_upload_access_key_id
   sensitive = true
