@@ -18,16 +18,6 @@ output "public_ecr_github_actions_upload_credentials_single_cell_simulator_secre
   sensitive = true
 }
 
-output "public_ecr_github_actions_upload_credentials_hpc_resource_provisioner_access_key_id" {
-  value     = module.public_ecr_github_actions_upload_credentials_hpc_resource_provisioner.publicecr_upload_access_key_id
-  sensitive = true
-}
-
-output "public_ecr_github_actions_upload_credentials_hpc_resource_provisioner_secret_access_key" {
-  value     = module.public_ecr_github_actions_upload_credentials_hpc_resource_provisioner.publicecr_upload_secret_access_key
-  sensitive = true
-}
-
 output "public_ecr_github_actions_upload_credentials_accounting_service_access_key_id" {
   value     = module.public_ecr_github_actions_upload_credentials_accounting_service.publicecr_upload_access_key_id
   sensitive = true

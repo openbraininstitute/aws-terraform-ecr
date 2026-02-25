@@ -106,26 +106,17 @@ module "public_ecr_github_actions_upload_credentials_single_cell_simulator" {
   github_repository_name = "BlueNaaS-SingleCell"
 }
 
-module "hpc_resource_provisioner" {
-  source = "./public-ecr-repo"
-
-  repository_name   = "hpc-resource-provisioner"
-  short_name        = "HPC Resource Provisioner"
-  short_description = "Manages the creation and deletion of parallel custers in AWS"
-  github_repo       = "https://github.com/openbraininstitute/hpc-resource-provisioner/"
-  long_description  = "The HPC Resource Provisioner is a small application used by the Open Brain Institute that offers an API to manage the creation and deletion of parallel-clusters in AWS."
-  architectures     = ["x86-64"]
-  operating_systems = ["Linux"]
-}
-
-module "public_ecr_github_actions_upload_credentials_hpc_resource_provisioner" {
-  source = "./public-ecr-upload-credentials"
-
-  iam_user_name          = "github_actions_upload_user_hpc_resource_provisioner"
-  ecr_repository_name    = module.hpc_resource_provisioner.repository_name
-  github_organisation    = local.github_organisation
-  github_repository_name = "BlueNaaS-SingleCell"
-}
+# module "hpc_resource_provisioner" {
+#   source = "./public-ecr-repo"
+#
+#   repository_name   = "hpc-resource-provisioner"
+#   short_name        = "HPC Resource Provisioner"
+#   short_description = "Manages the creation and deletion of parallel custers in AWS"
+#   github_repo       = "https://github.com/openbraininstitute/hpc-resource-provisioner/"
+#   long_description  = "The HPC Resource Provisioner is a small application used by the Open Brain Institute that offers an API to manage the creation and deletion of parallel-clusters in AWS."
+#   architectures     = ["x86-64"]
+#   operating_systems = ["Linux"]
+# }
 
 module "accounting_service" {
   source = "./public-ecr-repo"
