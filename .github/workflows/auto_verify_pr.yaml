@@ -1,4 +1,8 @@
 name: Auto - Verify & plan branch environment
+
+env:
+  AWS_ROLE_ARN: arn:aws:iam::985539765147:role/GithubTerraformEcr
+
 on:
   workflow_dispatch:
   pull_request:
@@ -8,15 +12,21 @@ on:
 jobs:
   terraform_verify:
     environment: ${{ github.base_ref }}
-    env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    permissions:
+      id-token: write
+      contents: read
 
     runs-on: ubuntu-latest
     name: Auto Verify & plan terraform code for branch environment
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ env.AWS_ROLE_ARN }}
+          aws-region: us-east-1
 
       - name: Configure Terraform
         uses: hashicorp/setup-terraform@v3
