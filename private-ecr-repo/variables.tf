@@ -4,14 +4,17 @@ variable "repository_name" {
   sensitive   = false
 }
 
-variable "allowed_to_pull_identities" {
-  type        = list(any)
-  description = "List of AWS identities that are allowed to pull from the private repository"
-}
+variable "allowed_to_pull_principals" {
+  type        = map(list(any))
+  description = "Mapping of AWS principals (e.g. services or identities) that are allowed to pull from the private repository"
 
-variable "allowed_to_pull_services" {
-  type        = list(any)
-  description = "List of AWS services that are allowed to pull from the private repository"
+  validation {
+    condition = anytrue([
+      for k, v in var.allowed_to_pull_principals :
+      contains(["AWS", "Service"], k)
+    ])
+    error_message = "Must specify at least one of: AWS, Service"
+  }
 }
 
 variable "lifecycle_policy_max_image_count" {
