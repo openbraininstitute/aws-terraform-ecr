@@ -106,17 +106,24 @@ module "public_ecr_github_actions_upload_credentials_single_cell_simulator" {
   github_repository_name = "BlueNaaS-SingleCell"
 }
 
-# module "hpc_resource_provisioner" {
-#   source = "./public-ecr-repo"
-#
-#   repository_name   = "hpc-resource-provisioner"
-#   short_name        = "HPC Resource Provisioner"
-#   short_description = "Manages the creation and deletion of parallel custers in AWS"
-#   github_repo       = "https://github.com/openbraininstitute/hpc-resource-provisioner/"
-#   long_description  = "The HPC Resource Provisioner is a small application used by the Open Brain Institute that offers an API to manage the creation and deletion of parallel-clusters in AWS."
-#   architectures     = ["x86-64"]
-#   operating_systems = ["Linux"]
-# }
+module "hpc_resource_provisioner" {
+  source = "./private-ecr-repo"
+
+  repository_name                     = "hpc-resource-provisioner"
+  allowed_to_pull_identities          = []
+  allowed_to_pull_services            = ["lambda.amazonaws.com"]
+  lifecycle_policy_max_image_count    = 10
+  lifecycle_policy_max_image_age_days = 30
+}
+
+module "private_ecr_github_actions_upload_credentials_hpc_resource_provisioner" {
+  source = "./private-ecr-upload-credentials"
+
+  iam_user_name          = "github_actions_upload_user_hpc_resource_provisioner"
+  ecr_repository_name    = module.hpc_resource_provisioner.repository_name
+  github_organisation    = local.github_organisation
+  github_repository_name = "hpc-resource-provisioner"
+}
 
 module "accounting_service" {
   source = "./public-ecr-repo"
@@ -272,6 +279,7 @@ module "obi_notebook_image" {
     "arn:aws:iam::992382665735:role/eksctl-jupyterhub-nodegroup-ng-xla-NodeInstanceRole-TqeVopvkuh0l", # EKS within main VPC in staging
     "arn:aws:iam::671250183987:role/eksctl-jupyterhub-nodegroup-ng-xla-NodeInstanceRole-ZlwgewinoBDn"  # EKS within main VPC for production
   ]
+  allowed_to_pull_services            = []
   lifecycle_policy_max_image_count    = 10
   lifecycle_policy_max_image_age_days = 30
 }
@@ -289,6 +297,7 @@ module "neuroagent" {
   source                              = "./private-ecr-repo"
   repository_name                     = "neuroagent"
   allowed_to_pull_identities          = ["arn:aws:iam::992382665735:role/ecs-service-agent-2024102309133921180000000e", "arn:aws:iam::671250183987:role/ecs-service-agent-20240524155002883400000004"]
+  allowed_to_pull_services            = []
   lifecycle_policy_max_image_count    = 10
   lifecycle_policy_max_image_age_days = 30
 }
@@ -309,6 +318,7 @@ module "launch_api" {
   allowed_to_pull_identities = [
     "arn:aws:iam::992382665735:role/launch_system_api20251120132453126500000006", # staging
   ]
+  allowed_to_pull_services            = []
   lifecycle_policy_max_image_count    = 10
   lifecycle_policy_max_image_age_days = 30
 }
@@ -320,6 +330,7 @@ module "launch_orchestrator" {
   allowed_to_pull_identities = [
     "arn:aws:iam::992382665735:role/launch_system_orchestrator20251120132453283700000008", # staging
   ]
+  allowed_to_pull_services            = []
   lifecycle_policy_max_image_count    = 10
   lifecycle_policy_max_image_age_days = 30
 }
@@ -331,6 +342,7 @@ module "launch_executor" {
   allowed_to_pull_identities = [
     "arn:aws:iam::992382665735:role/launch_system_executor20251120132453317700000009", # staging
   ]
+  allowed_to_pull_services            = []
   lifecycle_policy_max_image_count    = 10
   lifecycle_policy_max_image_age_days = 30
 }
@@ -355,6 +367,7 @@ module "auth_manager" {
 
   repository_name                     = "auth-manager"
   allowed_to_pull_identities          = ["arn:aws:iam::992382665735:role/auth_manager20251030104403745100000003", "arn:aws:iam::671250183987:role/auth_manager20251112133557154300000002"]
+  allowed_to_pull_services            = []
   lifecycle_policy_max_image_count    = 10
   lifecycle_policy_max_image_age_days = 30
 }
