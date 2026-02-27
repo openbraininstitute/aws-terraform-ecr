@@ -110,8 +110,7 @@ module "hpc_resource_provisioner" {
   source = "./private-ecr-repo"
 
   repository_name                     = "hpc-resource-provisioner"
-  allowed_to_pull_identities          = []
-  allowed_to_pull_services            = ["lambda.amazonaws.com"]
+  allowed_to_pull_principals          = { Service = ["lambda.amazonaws.com"] }
   lifecycle_policy_max_image_count    = 10
   lifecycle_policy_max_image_age_days = 30
 }
@@ -275,11 +274,10 @@ module "public_ecr_github_actions_upload_credentials_notebook_service" {
 module "obi_notebook_image" {
   source          = "./private-ecr-repo"
   repository_name = "obi-notebook-image"
-  allowed_to_pull_identities = [
+  allowed_to_pull_principals = { AWS = [
     "arn:aws:iam::992382665735:role/eksctl-jupyterhub-nodegroup-ng-xla-NodeInstanceRole-TqeVopvkuh0l", # EKS within main VPC in staging
     "arn:aws:iam::671250183987:role/eksctl-jupyterhub-nodegroup-ng-xla-NodeInstanceRole-ZlwgewinoBDn"  # EKS within main VPC for production
-  ]
-  allowed_to_pull_services            = []
+  ] }
   lifecycle_policy_max_image_count    = 10
   lifecycle_policy_max_image_age_days = 30
 }
@@ -296,8 +294,7 @@ module "private_ecr_github_actions_upload_credentials_obi-notebook_image" {
 module "neuroagent" {
   source                              = "./private-ecr-repo"
   repository_name                     = "neuroagent"
-  allowed_to_pull_identities          = ["arn:aws:iam::992382665735:role/ecs-service-agent-2024102309133921180000000e", "arn:aws:iam::671250183987:role/ecs-service-agent-20240524155002883400000004"]
-  allowed_to_pull_services            = []
+  allowed_to_pull_principals          = { AWS = ["arn:aws:iam::992382665735:role/ecs-service-agent-2024102309133921180000000e", "arn:aws:iam::671250183987:role/ecs-service-agent-20240524155002883400000004"] }
   lifecycle_policy_max_image_count    = 10
   lifecycle_policy_max_image_age_days = 30
 }
@@ -315,10 +312,9 @@ module "launch_api" {
   source = "./private-ecr-repo"
 
   repository_name = "launch-system/api"
-  allowed_to_pull_identities = [
+  allowed_to_pull_principals = { AWS = [
     "arn:aws:iam::992382665735:role/launch_system_api20251120132453126500000006", # staging
-  ]
-  allowed_to_pull_services            = []
+  ] }
   lifecycle_policy_max_image_count    = 10
   lifecycle_policy_max_image_age_days = 30
 }
@@ -327,10 +323,9 @@ module "launch_orchestrator" {
   source = "./private-ecr-repo"
 
   repository_name = "launch-system/orchestrator"
-  allowed_to_pull_identities = [
+  allowed_to_pull_principals = { AWS = [
     "arn:aws:iam::992382665735:role/launch_system_orchestrator20251120132453283700000008", # staging
-  ]
-  allowed_to_pull_services            = []
+  ] }
   lifecycle_policy_max_image_count    = 10
   lifecycle_policy_max_image_age_days = 30
 }
@@ -339,10 +334,9 @@ module "launch_executor" {
   source = "./private-ecr-repo"
 
   repository_name = "launch-system/default-executor"
-  allowed_to_pull_identities = [
+  allowed_to_pull_principals = { AWS = [
     "arn:aws:iam::992382665735:role/launch_system_executor20251120132453317700000009", # staging
-  ]
-  allowed_to_pull_services            = []
+  ] }
   lifecycle_policy_max_image_count    = 10
   lifecycle_policy_max_image_age_days = 30
 }
@@ -366,8 +360,7 @@ module "auth_manager" {
   source = "./private-ecr-repo"
 
   repository_name                     = "auth-manager"
-  allowed_to_pull_identities          = ["arn:aws:iam::992382665735:role/auth_manager20251030104403745100000003", "arn:aws:iam::671250183987:role/auth_manager20251112133557154300000002"]
-  allowed_to_pull_services            = []
+  allowed_to_pull_principals          = { AWS = ["arn:aws:iam::992382665735:role/auth_manager20251030104403745100000003", "arn:aws:iam::671250183987:role/auth_manager20251112133557154300000002"] }
   lifecycle_policy_max_image_count    = 10
   lifecycle_policy_max_image_age_days = 30
 }

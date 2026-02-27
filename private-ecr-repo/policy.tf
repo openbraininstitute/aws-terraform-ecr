@@ -3,14 +3,12 @@ data "aws_iam_policy_document" "allow_eks_pull_from_ecr" {
     sid    = "AllowEKSCrossAccountPullfromECR-${var.repository_name}"
     effect = "Allow"
 
-    principals {
-      type        = "AWS"
-      identifiers = var.allowed_to_pull_identities
-    }
-
-    principals {
-      type        = "Service"
-      identifiers = var.allowed_to_pull_services
+    dynamic "principals" {
+      for_each = var.allowed_to_pull_principals
+      content {
+        type        = principals.key
+        identifiers = principals.value
+      }
     }
 
     actions = [
