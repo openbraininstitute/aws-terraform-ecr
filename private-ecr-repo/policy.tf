@@ -8,6 +8,11 @@ data "aws_iam_policy_document" "allow_eks_pull_from_ecr" {
       identifiers = var.allowed_to_pull_identities
     }
 
+    principals {
+      type        = "Service"
+      identifiers = var.allowed_to_pull_services
+    }
+
     actions = [
       "ecr:BatchCheckLayerAvailability",
       "ecr:BatchGetImage",

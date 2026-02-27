@@ -6,7 +6,12 @@ variable "repository_name" {
 
 variable "allowed_to_pull_identities" {
   type        = list(any)
-  description = "List of AWS identities that are allow to pull from the private repository"
+  description = "List of AWS identities that are allowed to pull from the private repository"
+}
+
+variable "allowed_to_pull_services" {
+  type        = list(any)
+  description = "List of AWS services that are allowed to pull from the private repository"
 }
 
 variable "lifecycle_policy_max_image_count" {
