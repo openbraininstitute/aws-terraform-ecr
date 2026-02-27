@@ -110,7 +110,7 @@ module "hpc_resource_provisioner" {
   source = "./private-ecr-repo"
 
   repository_name                     = "hpc-resource-provisioner"
-  allowed_to_pull_principals          = { Service = ["lambda.amazonaws.com"] }
+  allowed_to_pull_principals          = { Service = ["lambda.amazonaws.com"], AWS = ["arn:aws:iam::130659266700:root", "arn:aws:iam::992382665735:root", "arn:aws:iam::671250183987:root", "arn:aws:iam::058264116529:root"] }
   lifecycle_policy_max_image_count    = 10
   lifecycle_policy_max_image_age_days = 30
 }
