@@ -278,7 +278,7 @@ module "obi_notebook_image" {
     "arn:aws:iam::992382665735:role/eksctl-jupyterhub-nodegroup-ng-xla-NodeInstanceRole-TqeVopvkuh0l", # EKS within main VPC in staging
     "arn:aws:iam::671250183987:role/eksctl-jupyterhub-nodegroup-ng-xla-NodeInstanceRole-ZlwgewinoBDn"  # EKS within main VPC for production
   ] }
-  lifecycle_policy_max_image_count    = 10
+  lifecycle_policy_max_image_count    = 30
   lifecycle_policy_max_image_age_days = 30
 }
 
