@@ -119,16 +119,6 @@ output "private_ecr_github_actions_upload_credentials_obi_hpc_resource_provision
   sensitive = true
 }
 
-output "private_ecr_download_credentials_launch_family_access_key_id" {
-  value     = module.private_ecr_download_credentials_launch_system_family.access_key_id
-  sensitive = true
-}
-
-output "private_ecr_download_credentials_launch_family_secret_access_key" {
-  value     = module.private_ecr_download_credentials_launch_system_family.secret_access_key
-  sensitive = true
-}
-
 # CodeArtifact outputs
 output "codeartifact_domain_name" {
   description = "CodeArtifact domain name"
