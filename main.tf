@@ -92,7 +92,7 @@ module "single_cell_simulator" {
   short_name        = "Single Cell Simulator"
   short_description = "Single Cell Simulator used by the Open Brain Institute"
   github_repo       = "https://github.com/openbraininstitute/Bluenaas"
-  long_description  = "This application is used within the Open Brain Institute web platform to simulate single cells"
+  long_description  = "This application is used within the Open Brain Institute web platform for small scale model builds, simulations and data processing"
   architectures     = ["x86-64"]
   operating_systems = ["Linux"]
 }
