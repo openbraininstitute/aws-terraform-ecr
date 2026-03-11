@@ -91,8 +91,8 @@ module "single_cell_simulator" {
   repository_name   = "single-cell-simulator"
   short_name        = "Single Cell Simulator"
   short_description = "Single Cell Simulator used by the Open Brain Institute"
-  github_repo       = "https://github.com/openbraininstitute/BlueNaaS-SingleCell/"
-  long_description  = "This application is used within the Open Brain Institute web platform to simulate single cells. It's based on BlueNaaS."
+  github_repo       = "https://github.com/openbraininstitute/Bluenaas"
+  long_description  = "This application is used within the Open Brain Institute web platform to simulate single cells"
   architectures     = ["x86-64"]
   operating_systems = ["Linux"]
 }
@@ -103,7 +103,7 @@ module "public_ecr_github_actions_upload_credentials_single_cell_simulator" {
   iam_user_name          = "github_actions_upload_user_single_cell_simulator"
   ecr_repository_name    = module.single_cell_simulator.repository_name
   github_organisation    = local.github_organisation
-  github_repository_name = "BlueNaaS-SingleCell"
+  github_repository_name = "Bluenaas"
 }
 
 module "hpc_resource_provisioner" {
