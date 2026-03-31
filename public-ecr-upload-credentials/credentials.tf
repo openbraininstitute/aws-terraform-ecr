@@ -34,11 +34,6 @@ resource "aws_iam_user" "ecr_user" {
   name = var.iam_user_name
 }
 
-# Create IAM Access Key
-resource "aws_iam_access_key" "ecr_user_access_key" {
-  user = aws_iam_user.ecr_user.name
-}
-
 # Attach a policy to allow logging in to ECR and pushing images
 resource "aws_iam_policy" "ecr_push_policy" {
   name        = "${var.iam_user_name}-ECRPushPolicy"
