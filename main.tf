@@ -314,6 +314,7 @@ module "launch_api" {
   repository_name = "launch-system/api"
   allowed_to_pull_principals = { AWS = [
     "arn:aws:iam::992382665735:role/launch_system_api20251120132453126500000006", # staging
+    "arn:aws:iam::671250183987:role/launch_system_api20260402094333665800000001", # production
   ] }
   lifecycle_policy_max_image_count    = 10
   lifecycle_policy_max_image_age_days = 30
@@ -325,6 +326,7 @@ module "launch_orchestrator" {
   repository_name = "launch-system/orchestrator"
   allowed_to_pull_principals = { AWS = [
     "arn:aws:iam::992382665735:role/launch_system_orchestrator20251120132453283700000008", # staging
+    "arn:aws:iam::671250183987:role/launch_system_orchestrator20260402094333744900000005", # production
   ] }
   lifecycle_policy_max_image_count    = 10
   lifecycle_policy_max_image_age_days = 30
@@ -336,6 +338,7 @@ module "launch_executor" {
   repository_name = "launch-system/default-executor"
   allowed_to_pull_principals = { AWS = [
     "arn:aws:iam::992382665735:role/launch_system_executor20251120132453317700000009", # staging
+    "arn:aws:iam::671250183987:role/launch_system_executor20260402094333906500000006", # production
   ] }
   lifecycle_policy_max_image_count    = 10
   lifecycle_policy_max_image_age_days = 30
