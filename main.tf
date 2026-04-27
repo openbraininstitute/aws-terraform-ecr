@@ -373,11 +373,13 @@ module "private_ecr_github_actions_upload_credentials_auth_manager" {
   github_repository_name = "auth-manager"
 }
 
+# Production role doesn't exist yet:
+# "arn:aws:iam::671250183987:role/grading_service"
 module "grading_service" {
   source = "./private-ecr-repo"
 
   repository_name                     = "grading-service"
-  allowed_to_pull_principals          = { AWS = ["arn:aws:iam::992382665735:role/grading_service", "arn:aws:iam::671250183987:role/grading_service"] }
+  allowed_to_pull_principals          = { AWS = ["arn:aws:iam::992382665735:role/grading_service"] }
   lifecycle_policy_max_image_count    = 10
   lifecycle_policy_max_image_age_days = 30
 }
