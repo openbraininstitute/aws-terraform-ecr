@@ -292,9 +292,13 @@ module "private_ecr_github_actions_upload_credentials_obi-notebook_image" {
 }
 
 module "neuroagent" {
-  source                              = "./private-ecr-repo"
-  repository_name                     = "neuroagent"
-  allowed_to_pull_principals          = { AWS = ["arn:aws:iam::992382665735:role/ecs-service-agent-2024102309133921180000000e", "arn:aws:iam::671250183987:role/ecs-service-agent-20240524155002883400000004"] }
+  source          = "./private-ecr-repo"
+  repository_name = "neuroagent"
+  allowed_to_pull_principals = { AWS = [
+    "arn:aws:iam::992382665735:role/ecs-service-agent-2024102309133921180000000e",
+    "arn:aws:iam::671250183987:role/ecs-service-agent-20240524155002883400000004",
+    "arn:aws:iam::992382665735:role/ml-ts-ecs-svc-agent-2026042911212745470000000"
+  ] }
   lifecycle_policy_max_image_count    = 10
   lifecycle_policy_max_image_age_days = 30
 }
