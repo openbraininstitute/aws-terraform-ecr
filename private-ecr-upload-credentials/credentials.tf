@@ -1,7 +1,7 @@
 # Transition: both the 'old style' user with access key, and 'new style' github actions role with github idp
 
 resource "aws_iam_role" "github_actions_role" {
-  name = replace("gh_ecr_push_${var.ecr_repository_name}", "*", "")
+  name = replace("gh_ecr_push_${coalesce(var.role_name, var.ecr_repository_name)}", "*", "")
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17",

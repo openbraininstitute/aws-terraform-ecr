@@ -1,3 +1,9 @@
+variable "role_name" {
+  type        = string
+  description = "Optional override for the IAM role name suffix. Defaults to ecr_repository_name."
+  default     = null
+}
+
 variable "iam_user_name" {
   type        = string
   description = "User name of the IAM user, has to be unique"
