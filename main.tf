@@ -69,6 +69,7 @@ module "private_ecr_github_actions_upload_credentials_obi_one" {
   source = "./private-ecr-upload-credentials"
 
   iam_user_name          = "github_actions_upload_user_obi_one_private"
+  role_name              = "obi-one-private"
   ecr_repository_name    = module.obi-one-private.repository_name
   github_organisation    = local.github_organisation
   github_repository_name = "obi-one"
