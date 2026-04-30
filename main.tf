@@ -53,6 +53,27 @@ module "obi-one" {
   operating_systems = ["Linux"]
 }
 
+module "obi-one-private" {
+  source = "./private-ecr-repo"
+
+  repository_name = "obi-one"
+  allowed_to_pull_principals = { AWS = [
+    "arn:aws:iam::992382665735:role/obi-one-v2-ecs-svc20251020123812886900000005", # staging
+    "arn:aws:iam::671250183987:role/obi-one-v2-ecs-svc20251028124622137300000004", # production
+  ] }
+  lifecycle_policy_max_image_count    = 20
+  lifecycle_policy_max_image_age_days = 30
+}
+
+module "private_ecr_github_actions_upload_credentials_obi_one" {
+  source = "./private-ecr-upload-credentials"
+
+  iam_user_name          = "github_actions_upload_user_obi_one_private"
+  ecr_repository_name    = module.obi-one-private.repository_name
+  github_organisation    = local.github_organisation
+  github_repository_name = "obi-one"
+}
+
 module "public_ecr_github_actions_upload_credentials_obi_one" {
   source = "./public-ecr-upload-credentials"
 
