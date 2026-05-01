@@ -58,8 +58,8 @@ module "obi-one-private" {
 
   repository_name = "obi-one"
   allowed_to_pull_principals = { AWS = [
-    "arn:aws:iam::992382665735:role/obi-one-v2-ecs-svc20251020123812886900000005", # staging
-    "arn:aws:iam::671250183987:role/obi-one-v2-ecs-svc20251028124622137300000004", # production
+    "arn:aws:iam::992382665735:role/obi-one-v2-ecs-exe20251020123812885800000004", # staging
+    "arn:aws:iam::671250183987:role/obi-one-v2-ecs-exe20251028124622055700000003", # production
   ] }
   lifecycle_policy_max_image_count    = 20
   lifecycle_policy_max_image_age_days = 30
