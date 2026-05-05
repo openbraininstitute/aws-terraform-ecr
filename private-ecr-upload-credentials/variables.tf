@@ -23,7 +23,7 @@ variable "github_organisation" {
 }
 
 variable "github_repository_name" {
-  type        = string
-  description = "GitHub repository name"
+  type        = list(string)
+  description = "GitHub repository name(s)"
   sensitive   = false
 }

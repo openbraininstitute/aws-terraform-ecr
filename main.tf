@@ -72,7 +72,7 @@ module "private_ecr_github_actions_upload_credentials_obi_one" {
   role_name              = "obi-one-private"
   ecr_repository_name    = module.obi-one-private.repository_name
   github_organisation    = local.github_organisation
-  github_repository_name = "obi-one"
+  github_repository_name = ["obi-one"]
 }
 
 module "public_ecr_github_actions_upload_credentials_obi_one" {
@@ -81,7 +81,7 @@ module "public_ecr_github_actions_upload_credentials_obi_one" {
   iam_user_name          = "github_actions_upload_user_obi_one"
   ecr_repository_name    = module.obi-one.repository_name
   github_organisation    = local.github_organisation
-  github_repository_name = "obi-one"
+  github_repository_name = ["obi-one"]
 }
 
 module "core_web_app" {
@@ -102,7 +102,7 @@ module "public_ecr_github_actions_upload_credentials_core_web_app" {
   iam_user_name          = "github_actions_upload_user_core_web_app"
   ecr_repository_name    = module.core_web_app.repository_name
   github_organisation    = local.github_organisation
-  github_repository_name = "core-web-app"
+  github_repository_name = ["core-web-app"]
   cdn_s3_bucket_access   = true
 }
 
@@ -125,7 +125,7 @@ module "public_ecr_github_actions_upload_credentials_single_cell_simulator" {
   iam_user_name          = "github_actions_upload_user_single_cell_simulator"
   ecr_repository_name    = module.single_cell_simulator.repository_name
   github_organisation    = local.github_organisation
-  github_repository_name = "Bluenaas"
+  github_repository_name = ["Bluenaas"]
 }
 
 module "hpc_resource_provisioner" {
@@ -143,7 +143,7 @@ module "private_ecr_github_actions_upload_credentials_hpc_resource_provisioner" 
   iam_user_name          = "github_actions_upload_user_hpc_resource_provisioner"
   ecr_repository_name    = module.hpc_resource_provisioner.repository_name
   github_organisation    = local.github_organisation
-  github_repository_name = "hpc-resource-provisioner"
+  github_repository_name = ["hpc-resource-provisioner"]
 }
 
 module "accounting_service" {
@@ -164,7 +164,7 @@ module "public_ecr_github_actions_upload_credentials_accounting_service" {
   iam_user_name          = "github_actions_upload_user_accounting_service"
   ecr_repository_name    = module.accounting_service.repository_name
   github_organisation    = local.github_organisation
-  github_repository_name = "accounting-service"
+  github_repository_name = ["accounting-service"]
 }
 
 module "sonata_cell_position" {
@@ -185,7 +185,7 @@ module "public_ecr_github_actions_upload_credentials_sonata_cell_position" {
   iam_user_name          = "github_actions_upload_user_sonata_cell_position"
   ecr_repository_name    = module.sonata_cell_position.repository_name
   github_organisation    = local.github_organisation
-  github_repository_name = "sonata-cell-position"
+  github_repository_name = ["sonata-cell-position"]
 }
 
 module "virtual_lab_api" {
@@ -206,7 +206,7 @@ module "public_ecr_github_actions_upload_credentials_virtual_lab_api" {
   iam_user_name          = "github_actions_upload_user_virtual_lab_api"
   ecr_repository_name    = module.virtual_lab_api.repository_name
   github_organisation    = local.github_organisation
-  github_repository_name = "virtual-lab-api"
+  github_repository_name = ["virtual-lab-api"]
 }
 
 module "thumbnail_generation_api" {
@@ -227,7 +227,7 @@ module "public_ecr_github_actions_upload_credentials_thumbnail_generation_api" {
   iam_user_name          = "github_actions_upload_user_thumbnail_generation_api"
   ecr_repository_name    = module.thumbnail_generation_api.repository_name
   github_organisation    = local.github_organisation
-  github_repository_name = "thumbnail-generation-api"
+  github_repository_name = ["thumbnail-generation-api"]
 }
 
 module "entitycore" {
@@ -248,7 +248,7 @@ module "public_ecr_github_actions_upload_credentials_entitycore" {
   iam_user_name          = "github_actions_upload_user_entitycore"
   ecr_repository_name    = module.entitycore.repository_name
   github_organisation    = local.github_organisation
-  github_repository_name = "entitycore"
+  github_repository_name = ["entitycore"]
 }
 
 module "neurodamus" {
@@ -269,7 +269,7 @@ module "public_ecr_github_actions_upload_credentials_neurodamus" {
   iam_user_name          = "github_actions_upload_user_neurodamus"
   ecr_repository_name    = module.neurodamus.repository_name
   github_organisation    = local.github_organisation
-  github_repository_name = "neurodamus"
+  github_repository_name = ["neurodamus"]
 }
 
 module "notebook_service" {
@@ -290,7 +290,7 @@ module "public_ecr_github_actions_upload_credentials_notebook_service" {
   iam_user_name          = "github_actions_upload_user_notebook_service"
   ecr_repository_name    = module.notebook_service.repository_name
   github_organisation    = local.github_organisation
-  github_repository_name = "notebook-service"
+  github_repository_name = ["notebook-service"]
 }
 
 module "obi_notebook_image" {
@@ -310,7 +310,7 @@ module "private_ecr_github_actions_upload_credentials_obi-notebook_image" {
   iam_user_name          = "github_actions_upload_user_obi_notebook_image"
   ecr_repository_name    = module.obi_notebook_image.repository_name
   github_organisation    = local.github_organisation
-  github_repository_name = "obi-notebook-image"
+  github_repository_name = ["obi-notebook-image"]
 }
 
 module "neuroagent" {
@@ -331,7 +331,7 @@ module "private_ecr_github_actions_upload_credentials_neuroagent" {
   iam_user_name          = "github_actions_upload_user_neuroagent"
   ecr_repository_name    = module.neuroagent.repository_name
   github_organisation    = local.github_organisation
-  github_repository_name = "neuroagent"
+  github_repository_name = ["neuroagent", "neuroagent-ts"]
 }
 
 module "launch_api" {
@@ -378,7 +378,7 @@ module "private_ecr_github_actions_upload_credentials_launch_system_family" {
   iam_user_name          = "github_actions_upload_user_launch_containers"
   ecr_repository_name    = "launch-system*"
   github_organisation    = local.github_organisation
-  github_repository_name = "launch-system" # it is in the same repo as launch-system, this is not a typo
+  github_repository_name = ["launch-system"] # it is in the same repo as launch-system, this is not a typo
 }
 
 module "auth_manager" {
@@ -396,7 +396,7 @@ module "private_ecr_github_actions_upload_credentials_auth_manager" {
   iam_user_name          = "github_actions_upload_user_auth_manager"
   ecr_repository_name    = module.auth_manager.repository_name
   github_organisation    = local.github_organisation
-  github_repository_name = "auth-manager"
+  github_repository_name = ["auth-manager"]
 }
 
 module "grading_service" {
@@ -414,5 +414,5 @@ module "private_ecr_github_actions_upload_credentials_grading_service" {
   iam_user_name          = "github_actions_upload_user_grading_service"
   ecr_repository_name    = module.grading_service.repository_name
   github_organisation    = local.github_organisation
-  github_repository_name = "grading-service"
+  github_repository_name = ["grading-service"]
 }
