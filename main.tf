@@ -41,18 +41,6 @@ module "codeartifact" {
   }
 }
 
-module "obi-one" {
-  source = "./public-ecr-repo"
-
-  repository_name   = "obi-one"
-  short_name        = "obi-one"
-  short_description = "obi-one is a standardized library of functions"
-  github_repo       = "https://github.com/openbraininstitute/obi-one"
-  long_description  = "obi-one is a standardized library of functions + workflows for biophysically-detailed brain modeling"
-  architectures     = ["x86-64"]
-  operating_systems = ["Linux"]
-}
-
 module "obi-one-private" {
   source = "./private-ecr-repo"
 
@@ -71,15 +59,6 @@ module "private_ecr_github_actions_upload_credentials_obi_one" {
   iam_user_name          = "github_actions_upload_user_obi_one_private"
   role_name              = "obi-one-private"
   ecr_repository_name    = module.obi-one-private.repository_name
-  github_organisation    = local.github_organisation
-  github_repository_name = ["obi-one"]
-}
-
-module "public_ecr_github_actions_upload_credentials_obi_one" {
-  source = "./public-ecr-upload-credentials"
-
-  iam_user_name          = "github_actions_upload_user_obi_one"
-  ecr_repository_name    = module.obi-one.repository_name
   github_organisation    = local.github_organisation
   github_repository_name = ["obi-one"]
 }
