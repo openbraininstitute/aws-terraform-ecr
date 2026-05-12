@@ -319,7 +319,8 @@ module "neuroagent" {
   allowed_to_pull_principals = { AWS = [
     "arn:aws:iam::992382665735:role/ecs-service-agent-2024102309133921180000000e",
     "arn:aws:iam::671250183987:role/ecs-service-agent-20240524155002883400000004",
-    "arn:aws:iam::992382665735:role/ml-ts-ecs-svc-agent-20260429112127454700000002"
+    "arn:aws:iam::992382665735:role/ml-ts-ecs-svc-agent-20260429112127454700000002",
+    "arn:aws:iam::671250183987:role/ml-ts-ecs-svc-agent-20260512060231478200000001",
   ] }
   lifecycle_policy_max_image_count    = 10
   lifecycle_policy_max_image_age_days = 30
