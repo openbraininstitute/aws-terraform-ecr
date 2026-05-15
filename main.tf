@@ -343,8 +343,10 @@ module "launch_executor" {
 
   repository_name = "launch-system/default-executor"
   allowed_to_pull_principals = { AWS = [
-  	X,
-	X
+    "arn:aws:iam::992382665735:role/launch_system_executor20260408081519816200000001", # staging default executor
+    "arn:aws:iam::992382665735:role/launch_system_executor20251120132453317700000009", # staging inait executor
+    "arn:aws:iam::671250183987:role/launch_system_executor20260416122511009900000003", # production default executor
+    "arn:aws:iam::671250183987:role/launch_system_executor20260402094333906500000006", # production inait executor
   ] }
   lifecycle_policy_max_image_count    = 10
   lifecycle_policy_max_image_age_days = 30
@@ -355,8 +357,10 @@ module "launch_executor_python312_compiler" {
 
   repository_name = "launch-system/runtimes/python3.12-compiler"
   allowed_to_pull_principals = { AWS = [
-  	X,
-	X
+    "arn:aws:iam::992382665735:role/launch_system_executor20260408081519816200000001", # staging default executor
+    "arn:aws:iam::992382665735:role/launch_system_executor20251120132453317700000009", # staging inait executor
+    "arn:aws:iam::671250183987:role/launch_system_executor20260416122511009900000003", # production default executor
+    "arn:aws:iam::671250183987:role/launch_system_executor20260402094333906500000006", # production inait executor
   ] }
   lifecycle_policy_max_image_count    = 10
   lifecycle_policy_max_image_age_days = 30
@@ -369,8 +373,6 @@ module "launch_executor_python312_compiler_openmpi5_neuron9_neurodamus" {
   allowed_to_pull_principals = { AWS = [
     "arn:aws:iam::992382665735:role/launch_system_executor20260408081519816200000001", # staging default executor
     "arn:aws:iam::992382665735:role/launch_system_executor20251120132453317700000009", # staging inait executor
-    "arn:aws:iam::671250183987:role/launch_system_executor20260416122511009900000003", # production default executor
-    "arn:aws:iam::671250183987:role/launch_system_executor20260402094333906500000006", # production inait executor
   ] }
   lifecycle_policy_max_image_count    = 10
   lifecycle_policy_max_image_age_days = 30
