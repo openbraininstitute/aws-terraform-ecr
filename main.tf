@@ -270,6 +270,27 @@ module "public_ecr_github_actions_upload_credentials_notebook_service" {
   github_repository_name = ["notebook-service"]
 }
 
+module "notebook_service_private" {
+  source = "./private-ecr-repo"
+
+  repository_name = "notebook-service"
+  allowed_to_pull_principals = { AWS = [
+    "arn:aws:iam::992382665735:role/notebook_service_task_exec_ecs20250911140844036500000002", # staging
+    "arn:aws:iam::671250183987:role/notebook_service_task_exec_ecs20250918112052446100000002", # production
+  ] }
+  lifecycle_policy_max_image_count = 20
+}
+
+module "private_ecr_github_actions_upload_credentials_notebook_service" {
+  source = "./private-ecr-upload-credentials"
+
+  iam_user_name          = "github_actions_upload_user_notebook_service_private"
+  role_name              = "notebook-service-private"
+  ecr_repository_name    = module.notebook_service_private.repository_name
+  github_organisation    = local.github_organisation
+  github_repository_name = ["notebook-service"]
+}
+
 module "obi_notebook_image" {
   source          = "./private-ecr-repo"
   repository_name = "obi-notebook-image"
