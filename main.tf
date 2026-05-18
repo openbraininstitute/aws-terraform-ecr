@@ -49,8 +49,7 @@ module "obi-one-private" {
     "arn:aws:iam::992382665735:role/obi-one-v2-ecs-exe20251020123812885800000004", # staging
     "arn:aws:iam::671250183987:role/obi-one-v2-ecs-exe20251028124622055700000003", # production
   ] }
-  lifecycle_policy_max_image_count    = 20
-  lifecycle_policy_max_image_age_days = 30
+  lifecycle_policy_max_image_count = 20
 }
 
 module "private_ecr_github_actions_upload_credentials_obi_one" {
@@ -110,10 +109,9 @@ module "public_ecr_github_actions_upload_credentials_single_cell_simulator" {
 module "hpc_resource_provisioner" {
   source = "./private-ecr-repo"
 
-  repository_name                     = "hpc-resource-provisioner"
-  allowed_to_pull_principals          = { Service = ["lambda.amazonaws.com"], AWS = ["arn:aws:iam::130659266700:root", "arn:aws:iam::992382665735:root", "arn:aws:iam::671250183987:root", "arn:aws:iam::058264116529:root"] }
-  lifecycle_policy_max_image_count    = 10
-  lifecycle_policy_max_image_age_days = 30
+  repository_name                  = "hpc-resource-provisioner"
+  allowed_to_pull_principals       = { Service = ["lambda.amazonaws.com"], AWS = ["arn:aws:iam::130659266700:root", "arn:aws:iam::992382665735:root", "arn:aws:iam::671250183987:root", "arn:aws:iam::058264116529:root"] }
+  lifecycle_policy_max_image_count = 10
 }
 
 module "private_ecr_github_actions_upload_credentials_hpc_resource_provisioner" {
@@ -279,8 +277,7 @@ module "obi_notebook_image" {
     "arn:aws:iam::992382665735:role/eksctl-jupyterhub-nodegroup-ng-xla-NodeInstanceRole-TqeVopvkuh0l", # EKS within main VPC in staging
     "arn:aws:iam::671250183987:role/eksctl-jupyterhub-nodegroup-ng-xla-NodeInstanceRole-ZlwgewinoBDn"  # EKS within main VPC for production
   ] }
-  lifecycle_policy_max_image_count    = 30
-  lifecycle_policy_max_image_age_days = 30
+  lifecycle_policy_max_image_count = 30
 }
 
 module "private_ecr_github_actions_upload_credentials_obi-notebook_image" {
@@ -301,8 +298,7 @@ module "neuroagent" {
     "arn:aws:iam::992382665735:role/ml-ts-ecs-svc-agent-20260429112127454700000002",
     "arn:aws:iam::671250183987:role/ml-ts-ecs-svc-agent-20260512060231478200000001",
   ] }
-  lifecycle_policy_max_image_count    = 10
-  lifecycle_policy_max_image_age_days = 30
+  lifecycle_policy_max_image_count = 10
 }
 
 module "private_ecr_github_actions_upload_credentials_neuroagent" {
@@ -322,8 +318,7 @@ module "launch_api" {
     "arn:aws:iam::992382665735:role/launch_system_api20251120132453126500000006", # staging
     "arn:aws:iam::671250183987:role/launch_system_api20260402094333665800000001", # production
   ] }
-  lifecycle_policy_max_image_count    = 10
-  lifecycle_policy_max_image_age_days = 30
+  lifecycle_policy_max_image_count = 10
 }
 
 module "launch_orchestrator" {
@@ -334,8 +329,7 @@ module "launch_orchestrator" {
     "arn:aws:iam::992382665735:role/launch_system_orchestrator20251120132453283700000008", # staging
     "arn:aws:iam::671250183987:role/launch_system_orchestrator20260402094333744900000005", # production
   ] }
-  lifecycle_policy_max_image_count    = 10
-  lifecycle_policy_max_image_age_days = 30
+  lifecycle_policy_max_image_count = 10
 }
 
 module "launch_executor" {
@@ -348,8 +342,7 @@ module "launch_executor" {
     "arn:aws:iam::671250183987:role/launch_system_executor20260416122511009900000003", # production default executor
     "arn:aws:iam::671250183987:role/launch_system_executor20260402094333906500000006", # production inait executor
   ] }
-  lifecycle_policy_max_image_count    = 10
-  lifecycle_policy_max_image_age_days = 30
+  lifecycle_policy_max_image_count = 10
 }
 
 module "launch_executor_python312_compiler" {
@@ -362,8 +355,7 @@ module "launch_executor_python312_compiler" {
     "arn:aws:iam::671250183987:role/launch_system_executor20260416122511009900000003", # production default executor
     "arn:aws:iam::671250183987:role/launch_system_executor20260402094333906500000006", # production inait executor
   ] }
-  lifecycle_policy_max_image_count    = 10
-  lifecycle_policy_max_image_age_days = 30
+  lifecycle_policy_max_image_count = 10
 }
 
 module "launch_executor_python312_compiler_openmpi5_neuron9_neurodamus" {
@@ -374,8 +366,7 @@ module "launch_executor_python312_compiler_openmpi5_neuron9_neurodamus" {
     "arn:aws:iam::992382665735:role/launch_system_executor20260408081519816200000001", # staging default executor
     "arn:aws:iam::671250183987:role/launch_system_executor20260416122511009900000003", # production default executor
   ] }
-  lifecycle_policy_max_image_count    = 10
-  lifecycle_policy_max_image_age_days = 30
+  lifecycle_policy_max_image_count = 10
 }
 
 module "private_ecr_github_actions_upload_credentials_launch_system_family" {
@@ -390,10 +381,9 @@ module "private_ecr_github_actions_upload_credentials_launch_system_family" {
 module "auth_manager" {
   source = "./private-ecr-repo"
 
-  repository_name                     = "auth-manager"
-  allowed_to_pull_principals          = { AWS = ["arn:aws:iam::992382665735:role/auth_manager20251030104403745100000003", "arn:aws:iam::671250183987:role/auth_manager20251112133557154300000002"] }
-  lifecycle_policy_max_image_count    = 10
-  lifecycle_policy_max_image_age_days = 30
+  repository_name                  = "auth-manager"
+  allowed_to_pull_principals       = { AWS = ["arn:aws:iam::992382665735:role/auth_manager20251030104403745100000003", "arn:aws:iam::671250183987:role/auth_manager20251112133557154300000002"] }
+  lifecycle_policy_max_image_count = 10
 }
 
 module "private_ecr_github_actions_upload_credentials_auth_manager" {
@@ -408,10 +398,9 @@ module "private_ecr_github_actions_upload_credentials_auth_manager" {
 module "grading_service" {
   source = "./private-ecr-repo"
 
-  repository_name                     = "grading-service"
-  allowed_to_pull_principals          = { AWS = ["arn:aws:iam::992382665735:role/grading_service", "arn:aws:iam::671250183987:role/grading_service"] }
-  lifecycle_policy_max_image_count    = 10
-  lifecycle_policy_max_image_age_days = 30
+  repository_name                  = "grading-service"
+  allowed_to_pull_principals       = { AWS = ["arn:aws:iam::992382665735:role/grading_service", "arn:aws:iam::671250183987:role/grading_service"] }
+  lifecycle_policy_max_image_count = 10
 }
 
 module "private_ecr_github_actions_upload_credentials_grading_service" {

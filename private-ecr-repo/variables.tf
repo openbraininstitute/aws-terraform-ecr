@@ -22,9 +22,3 @@ variable "lifecycle_policy_max_image_count" {
   description = "Maximum number of images to keep. Older images will be deleted."
   default     = null
 }
-
-variable "lifecycle_policy_max_image_age_days" {
-  type        = number
-  description = "Maximum age in days for images. Images older than this will be deleted."
-  default     = null
-}
