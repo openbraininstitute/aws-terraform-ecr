@@ -249,27 +249,6 @@ module "public_ecr_github_actions_upload_credentials_neurodamus" {
   github_repository_name = ["neurodamus"]
 }
 
-module "notebook_service" {
-  source = "./public-ecr-repo"
-
-  repository_name   = "notebook-service"
-  short_name        = "Notebook Service"
-  short_description = "The Notebook Service allows launching notebooks within the platform."
-  github_repo       = "https://github.com/openbraininstitute/notebook-service/"
-  long_description  = "The Notebook Service allows launching notebooks within the platform."
-  architectures     = ["x86-64"]
-  operating_systems = ["Linux"]
-}
-
-module "public_ecr_github_actions_upload_credentials_notebook_service" {
-  source = "./public-ecr-upload-credentials"
-
-  iam_user_name          = "github_actions_upload_user_notebook_service"
-  ecr_repository_name    = module.notebook_service.repository_name
-  github_organisation    = local.github_organisation
-  github_repository_name = ["notebook-service"]
-}
-
 module "notebook_service_private" {
   source = "./private-ecr-repo"
 
