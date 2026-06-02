@@ -369,6 +369,16 @@ module "launch_executor_python312_compiler_openmpi5_neuron9_neurodamus" {
   lifecycle_policy_max_image_count = 10
 }
 
+module "launch_executor_python312_compiler_cuda128" {
+  source          = "./private-ecr-repo"
+  repository_name = "launch-system/runtimes/python3.12-compiler-cuda12.8"
+  allowed_to_pull_principals = { AWS = [
+    "arn:aws:iam::992382665735:role/launch_system_executor20260408081519816200000001", # staging default executor
+    "arn:aws:iam::671250183987:role/launch_system_executor20260416122511009900000003", # production default executor
+  ] }
+  lifecycle_policy_max_image_count = 10
+}
+
 module "private_ecr_github_actions_upload_credentials_launch_system_family" {
   source = "./private-ecr-upload-credentials"
 
