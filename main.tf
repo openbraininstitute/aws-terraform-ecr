@@ -317,6 +317,7 @@ module "launch_api" {
   allowed_to_pull_principals = { AWS = [
     "arn:aws:iam::992382665735:role/launch_system_api20251120132453126500000006", # staging
     "arn:aws:iam::671250183987:role/launch_system_api20260402094333665800000001", # production
+    "arn:aws:iam::009203151042:role/launch_system_api20260609103041457800000004", # sandbox-nse
   ] }
   lifecycle_policy_max_image_count = 10
 }
@@ -328,6 +329,7 @@ module "launch_orchestrator" {
   allowed_to_pull_principals = { AWS = [
     "arn:aws:iam::992382665735:role/launch_system_orchestrator20251120132453283700000008", # staging
     "arn:aws:iam::671250183987:role/launch_system_orchestrator20260402094333744900000005", # production
+    "arn:aws:iam::009203151042:role/launch_system_orchestrator20260605174419559900000003", # sandbox-nse
   ] }
   lifecycle_policy_max_image_count = 10
 }
@@ -341,6 +343,7 @@ module "launch_executor" {
     "arn:aws:iam::992382665735:role/launch_system_executor20251120132453317700000009", # staging inait executor
     "arn:aws:iam::671250183987:role/launch_system_executor20260416122511009900000003", # production default executor
     "arn:aws:iam::671250183987:role/launch_system_executor20260402094333906500000006", # production inait executor
+    "arn:aws:iam::009203151042:role/launch_system_executor2026060517442080070000000b", # sandbox-nse default executor
   ] }
   lifecycle_policy_max_image_count = 10
 }
@@ -354,6 +357,7 @@ module "launch_executor_python312_compiler" {
     "arn:aws:iam::992382665735:role/launch_system_executor20251120132453317700000009", # staging inait executor
     "arn:aws:iam::671250183987:role/launch_system_executor20260416122511009900000003", # production default executor
     "arn:aws:iam::671250183987:role/launch_system_executor20260402094333906500000006", # production inait executor
+    "arn:aws:iam::009203151042:role/launch_system_executor2026060517442080070000000b", # sandbox-nse default executor
   ] }
   lifecycle_policy_max_image_count = 10
 }
@@ -365,6 +369,7 @@ module "launch_executor_python312_compiler_openmpi5_neuron9_neurodamus" {
   allowed_to_pull_principals = { AWS = [
     "arn:aws:iam::992382665735:role/launch_system_executor20260408081519816200000001", # staging default executor
     "arn:aws:iam::671250183987:role/launch_system_executor20260416122511009900000003", # production default executor
+    "arn:aws:iam::009203151042:role/launch_system_executor2026060517442080070000000b", # sandbox-nse default executor
   ] }
   lifecycle_policy_max_image_count = 10
 }
@@ -375,6 +380,7 @@ module "launch_executor_python312_compiler_cuda128" {
   allowed_to_pull_principals = { AWS = [
     "arn:aws:iam::992382665735:role/launch_system_executor20260408081519816200000001", # staging default executor
     "arn:aws:iam::671250183987:role/launch_system_executor20260416122511009900000003", # production default executor
+    "arn:aws:iam::009203151042:role/launch_system_executor20260507100121457500000002", # sandbox-nse gpu executor
   ] }
   lifecycle_policy_max_image_count = 10
 }
