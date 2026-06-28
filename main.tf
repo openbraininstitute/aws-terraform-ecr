@@ -380,7 +380,7 @@ module "launch_executor_python312_compiler_cuda128" {
   allowed_to_pull_principals = { AWS = [
     "arn:aws:iam::992382665735:role/launch_system_executor20260408081519816200000001", # staging default executor
     "arn:aws:iam::671250183987:role/launch_system_executor20260416122511009900000003", # production default executor
-    "arn:aws:iam::009203151042:role/launch_system_executor20260507100121457500000002", # sandbox-nse gpu executor
+    "arn:aws:iam::009203151042:role/launch_system_executor2026060517442080070000000b", # sandbox-nse default executor (GPU tasks use this execution role)
   ] }
   lifecycle_policy_max_image_count = 10
 }
