@@ -293,10 +293,8 @@ module "neuroagent" {
   source          = "./private-ecr-repo"
   repository_name = "neuroagent"
   allowed_to_pull_principals = { AWS = [
-    "arn:aws:iam::992382665735:role/ecs-service-agent-2024102309133921180000000e",
-    "arn:aws:iam::671250183987:role/ecs-service-agent-20240524155002883400000004",
-    "arn:aws:iam::992382665735:role/ml-ts-ecs-svc-agent-20260429112127454700000002",
-    "arn:aws:iam::671250183987:role/ml-ts-ecs-svc-agent-20260512060231478200000001",
+    "arn:aws:iam::992382665735:role/ml-ts-ecs-svc-agent-20260429112127454700000002", # staging
+    "arn:aws:iam::671250183987:role/ml-ts-ecs-svc-agent-20260512060231478200000001", # production
   ] }
   lifecycle_policy_max_image_count = 10
 }
@@ -307,7 +305,7 @@ module "private_ecr_github_actions_upload_credentials_neuroagent" {
   iam_user_name          = "github_actions_upload_user_neuroagent"
   ecr_repository_name    = module.neuroagent.repository_name
   github_organisation    = local.github_organisation
-  github_repository_name = ["neuroagent", "neuroagent-ts"]
+  github_repository_name = ["neuroagent-ts"]
 }
 
 module "launch_api" {
