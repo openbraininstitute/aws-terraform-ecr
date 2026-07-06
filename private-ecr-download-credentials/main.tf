@@ -25,7 +25,7 @@ resource "aws_iam_policy" "download_policy" {
           "ecr:BatchGetImage",
           "ecr:BatchCheckLayerAvailability",
         ]
-        Resource = ["arn:aws:ecr:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:repository/${var.ecr_repository_name}"]
+        Resource = ["arn:aws:ecr:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:repository/${var.ecr_repository_name}"]
       },
       {
         Effect = "Allow"
