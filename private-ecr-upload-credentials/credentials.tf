@@ -67,7 +67,7 @@ resource "aws_iam_policy" "ecr_push_policy" {
           "ecr:CompleteLayerUpload",
           "ecr:DescribeRepositories"
         ]
-        Resource = ["arn:aws:ecr:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:repository/${var.ecr_repository_name}"]
+        Resource = ["arn:aws:ecr:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:repository/${var.ecr_repository_name}"]
       }
     ]
   })
