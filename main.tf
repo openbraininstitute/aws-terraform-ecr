@@ -319,7 +319,7 @@ module "launch_api" {
     "arn:aws:iam::671250183987:role/launch_system_api20260402094333665800000001", # production
     "arn:aws:iam::009203151042:role/launch_system_api20260609103041457800000004", # sandbox-nse
   ] }
-  lifecycle_policy_max_image_count = 10
+  lifecycle_policy_max_image_count = 30
 }
 
 module "launch_orchestrator" {
