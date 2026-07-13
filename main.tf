@@ -296,7 +296,7 @@ module "neuroagent" {
     "arn:aws:iam::992382665735:role/ml-ts-ecs-svc-agent-20260429112127454700000002", # staging
     "arn:aws:iam::671250183987:role/ml-ts-ecs-svc-agent-20260512060231478200000001", # production
   ] }
-  lifecycle_policy_max_image_count = 10
+  lifecycle_policy_max_image_count = 50
 }
 
 module "private_ecr_github_actions_upload_credentials_neuroagent" {
@@ -317,7 +317,7 @@ module "launch_api" {
     "arn:aws:iam::671250183987:role/launch_system_api20260402094333665800000001", # production
     "arn:aws:iam::009203151042:role/launch_system_api20260609103041457800000004", # sandbox-nse
   ] }
-  lifecycle_policy_max_image_count = 30
+  lifecycle_policy_max_image_count = 50
 }
 
 module "launch_orchestrator" {
@@ -329,7 +329,7 @@ module "launch_orchestrator" {
     "arn:aws:iam::671250183987:role/launch_system_orchestrator20260402094333744900000005", # production
     "arn:aws:iam::009203151042:role/launch_system_orchestrator20260605174419559900000003", # sandbox-nse
   ] }
-  lifecycle_policy_max_image_count = 10
+  lifecycle_policy_max_image_count = 50
 }
 
 module "launch_executor" {
@@ -343,7 +343,7 @@ module "launch_executor" {
     "arn:aws:iam::671250183987:role/launch_system_executor20260402094333906500000006", # production inait executor
     "arn:aws:iam::009203151042:role/launch_system_executor2026060517442080070000000b", # sandbox-nse default executor
   ] }
-  lifecycle_policy_max_image_count = 10
+  lifecycle_policy_max_image_count = 50
 }
 
 module "launch_executor_python312_compiler" {
@@ -397,7 +397,7 @@ module "auth_manager" {
 
   repository_name                  = "auth-manager"
   allowed_to_pull_principals       = { AWS = ["arn:aws:iam::992382665735:role/auth_manager20251030104403745100000003", "arn:aws:iam::671250183987:role/auth_manager20251112133557154300000002"] }
-  lifecycle_policy_max_image_count = 10
+  lifecycle_policy_max_image_count = 50
 }
 
 module "private_ecr_github_actions_upload_credentials_auth_manager" {
@@ -414,7 +414,7 @@ module "grading_service" {
 
   repository_name                  = "grading-service"
   allowed_to_pull_principals       = { AWS = ["arn:aws:iam::992382665735:role/grading_service", "arn:aws:iam::671250183987:role/grading_service"] }
-  lifecycle_policy_max_image_count = 10
+  lifecycle_policy_max_image_count = 50
 }
 
 module "private_ecr_github_actions_upload_credentials_grading_service" {
