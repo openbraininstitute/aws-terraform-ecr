@@ -257,7 +257,7 @@ module "notebook_service_private" {
     "arn:aws:iam::992382665735:role/notebook_service_task_exec_ecs20250911140844036500000002", # staging
     "arn:aws:iam::671250183987:role/notebook_service_task_exec_ecs20250918112052446100000002", # production
   ] }
-  lifecycle_policy_max_image_count = 20
+  lifecycle_policy_max_image_count = 50
 }
 
 module "private_ecr_github_actions_upload_credentials_notebook_service" {
