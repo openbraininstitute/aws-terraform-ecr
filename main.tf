@@ -425,3 +425,21 @@ module "private_ecr_github_actions_upload_credentials_grading_service" {
   github_organisation    = local.github_organisation
   github_repository_name = ["grading-service"]
 }
+
+module "db_backups_container" {
+  source = "./private-ecr-repo"
+
+  repository_name                  = "db-backups-container"
+  allowed_to_pull_principals       = { AWS = ["arn:aws:iam::992382665735:user/nas_backup"] } # don't forget to add the production one too
+  lifecycle_policy_max_image_count = 5
+}
+
+module "private_ecr_github_actions_upload_credentials_db_backups_container" {
+  source = "./private-ecr-upload-credentials"
+
+  iam_user_name          = "github_actions_upload_user_db_backups_container"
+  ecr_repository_name    = module.db_backups_container.repository_name
+  github_organisation    = local.github_organisation
+  github_repository_name = ["db-backups-container"]
+}
+
