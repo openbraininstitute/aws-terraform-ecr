@@ -427,15 +427,19 @@ module "private_ecr_github_actions_upload_credentials_grading_service" {
 }
 
 module "db_backups_container" {
-  source = "./private-ecr-repo"
+  source = "./public-ecr-repo"
 
-  repository_name                  = "db-backups-container"
-  allowed_to_pull_principals       = { AWS = ["arn:aws:iam::992382665735:user/nas_backup"] } # don't forget to add the production one too
-  lifecycle_policy_max_image_count = 5
+  repository_name   = "db-backups-container"
+  short_name        = "db-backups-container"
+  short_description = "A simple container preconfigured with all the tools to run our DB backups"
+  github_repo       = "https://github.com/openbraininstitute/db-backups-container"
+  long_description  = "A simple container preconfigured with all the tools to run our DB backups"
+  architectures     = ["x86-64", "arm64"]
+  operating_systems = ["Linux"]
 }
 
-module "private_ecr_github_actions_upload_credentials_db_backups_container" {
-  source = "./private-ecr-upload-credentials"
+module "pubolic_ecr_github_actions_upload_credentials_db_backups_container" {
+  source = "./public-ecr-upload-credentials"
 
   iam_user_name          = "github_actions_upload_user_db_backups_container"
   ecr_repository_name    = module.db_backups_container.repository_name
