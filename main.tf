@@ -28,7 +28,7 @@ module "codeartifact" {
   repositories = {
     pypi-prod = {
       external_connection     = "public:pypi"
-      github_repository_names = ["Ultraliser", "NeuroMorphoMesh"]
+      github_repository_names = ["Ultraliser", "NeuroMorphoMesh", "obi-jupyterlab-theme"]
     }
     pypi-dev = {
       external_connection     = "public:pypi"
