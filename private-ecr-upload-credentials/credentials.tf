@@ -61,6 +61,7 @@ resource "aws_iam_policy" "ecr_push_policy" {
         Action = [
           "ecr:BatchCheckLayerAvailability",
           "ecr:BatchGetImage",
+          "ecr:GetDownloadUrlForLayer",
           "ecr:PutImage",
           "ecr:InitiateLayerUpload",
           "ecr:UploadLayerPart",
