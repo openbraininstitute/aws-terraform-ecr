@@ -49,7 +49,7 @@ module "obi-one-private" {
     "arn:aws:iam::992382665735:role/obi-one-v2-ecs-exe20251020123812885800000004", # staging
     "arn:aws:iam::671250183987:role/obi-one-v2-ecs-exe20251028124622055700000003", # production
   ] }
-  lifecycle_policy_max_image_count = 20
+  lifecycle_policy_max_image_count = 30
 }
 
 module "private_ecr_github_actions_upload_credentials_obi_one" {
@@ -111,7 +111,7 @@ module "hpc_resource_provisioner" {
 
   repository_name                  = "hpc-resource-provisioner"
   allowed_to_pull_principals       = { Service = ["lambda.amazonaws.com"], AWS = ["arn:aws:iam::130659266700:root", "arn:aws:iam::992382665735:root", "arn:aws:iam::671250183987:root", "arn:aws:iam::058264116529:root"] }
-  lifecycle_policy_max_image_count = 10
+  lifecycle_policy_max_image_count = 30
 }
 
 module "private_ecr_github_actions_upload_credentials_hpc_resource_provisioner" {
@@ -357,7 +357,7 @@ module "launch_executor_python312_compiler" {
     "arn:aws:iam::671250183987:role/launch_system_executor20260402094333906500000006", # production inait executor
     "arn:aws:iam::009203151042:role/launch_system_executor2026060517442080070000000b", # sandbox-nse default executor
   ] }
-  lifecycle_policy_max_image_count = 10
+  lifecycle_policy_max_image_count = 30
 }
 
 module "launch_executor_python312_compiler_openmpi5_neuron9_neurodamus" {
@@ -369,7 +369,7 @@ module "launch_executor_python312_compiler_openmpi5_neuron9_neurodamus" {
     "arn:aws:iam::671250183987:role/launch_system_executor20260416122511009900000003", # production default executor
     "arn:aws:iam::009203151042:role/launch_system_executor2026060517442080070000000b", # sandbox-nse default executor
   ] }
-  lifecycle_policy_max_image_count = 10
+  lifecycle_policy_max_image_count = 30
 }
 
 module "launch_executor_python312_compiler_cuda128" {
@@ -380,7 +380,7 @@ module "launch_executor_python312_compiler_cuda128" {
     "arn:aws:iam::671250183987:role/launch_system_executor20260416122511009900000003", # production default executor
     "arn:aws:iam::009203151042:role/launch_system_executor2026060517442080070000000b", # sandbox-nse default executor (GPU tasks use this execution role)
   ] }
-  lifecycle_policy_max_image_count = 10
+  lifecycle_policy_max_image_count = 30
 }
 
 module "private_ecr_github_actions_upload_credentials_launch_system_family" {
