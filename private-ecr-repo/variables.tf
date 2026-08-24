@@ -20,5 +20,4 @@ variable "allowed_to_pull_principals" {
 variable "lifecycle_policy_max_image_count" {
   type        = number
   description = "Maximum number of images to keep. Older images will be deleted."
-  default     = null
 }
