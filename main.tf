@@ -28,11 +28,11 @@ module "codeartifact" {
   repositories = {
     pypi-prod = {
       external_connection     = "public:pypi"
-      github_repository_names = ["Ultraliser", "NeuroMorphoMesh", "obi-jupyterlab-theme", "sonata-simplify"]
+      github_repository_names = ["Ultraliser", "NeuroMorphoMesh", "obi-jupyterlab-theme", "sonata-simplify", "ion-channel-builder"]
     }
     pypi-dev = {
       external_connection     = "public:pypi"
-      github_repository_names = ["Ultraliser", "NeuroMorphoMesh", "sonata-simplify"]
+      github_repository_names = ["Ultraliser", "NeuroMorphoMesh", "sonata-simplify", "ion-channel-builder"]
     }
   }
 
