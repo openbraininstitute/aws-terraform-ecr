@@ -295,6 +295,7 @@ module "neuroagent" {
   allowed_to_pull_principals = { AWS = [
     "arn:aws:iam::992382665735:role/ml-ts-ecs-svc-agent-20260429112127454700000002", # staging
     "arn:aws:iam::671250183987:role/ml-ts-ecs-svc-agent-20260512060231478200000001", # production
+    "arn:aws:iam::992382695250:role/autonomous-researcher-poc-runtime",              # aws-sandbox01, AgentCore Runtime POC
   ] }
   lifecycle_policy_max_image_count = 50
 }
