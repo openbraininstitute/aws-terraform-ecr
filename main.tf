@@ -275,7 +275,9 @@ module "obi_notebook_image" {
   repository_name = "obi-notebook-image"
   allowed_to_pull_principals = { AWS = [
     "arn:aws:iam::992382665735:role/eksctl-jupyterhub-nodegroup-ng-xla-NodeInstanceRole-TqeVopvkuh0l", # EKS within main VPC in staging
-    "arn:aws:iam::671250183987:role/eksctl-jupyterhub-nodegroup-ng-xla-NodeInstanceRole-ZlwgewinoBDn"  # EKS within main VPC for production
+    "arn:aws:iam::671250183987:role/eksctl-jupyterhub-nodegroup-ng-xla-NodeInstanceRole-ZlwgewinoBDn", # EKS within main VPC for production
+    "arn:aws:iam::992382665735:role/eksctl-jupyterhub-nodegroup-ng-ful-NodeInstanceRole-UBzd3H3PMitn", # EKS ng-fullnode in staging
+    "arn:aws:iam::671250183987:role/eksctl-jupyterhub-nodegroup-ng-ful-NodeInstanceRole-rBVyq1V0exRe"  # EKS ng-fullnode in production
   ] }
   lifecycle_policy_max_image_count = 30
 }
