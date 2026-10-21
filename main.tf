@@ -274,8 +274,10 @@ module "obi_notebook_image" {
   source          = "./private-ecr-repo"
   repository_name = "obi-notebook-image"
   allowed_to_pull_principals = { AWS = [
-    "arn:aws:iam::992382665735:role/eksctl-jupyterhub-nodegroup-ng-xla-NodeInstanceRole-TqeVopvkuh0l", # EKS within main VPC in staging
-    "arn:aws:iam::671250183987:role/eksctl-jupyterhub-nodegroup-ng-xla-NodeInstanceRole-ZlwgewinoBDn", # EKS within main VPC for production
+    "arn:aws:iam::992382665735:role/eksctl-jupyterhub-nodegroup-ng-xla-NodeInstanceRole-TqeVopvkuh0l", # EKS ng-xlarge-private (m5, being retired) in staging
+    "arn:aws:iam::671250183987:role/eksctl-jupyterhub-nodegroup-ng-xla-NodeInstanceRole-ZlwgewinoBDn", # EKS ng-xlarge-private (m5, being retired) for production
+    "arn:aws:iam::992382665735:role/eksctl-jupyterhub-nodegroup-ng-xla-NodeInstanceRole-4gU8v4wQDKVh", # EKS ng-xlarge-private-m6a in staging
+    "arn:aws:iam::671250183987:role/eksctl-jupyterhub-nodegroup-ng-xla-NodeInstanceRole-yoGytOrYBzoR", # EKS ng-xlarge-private-m6a for production
     "arn:aws:iam::992382665735:role/eksctl-jupyterhub-nodegroup-ng-ful-NodeInstanceRole-UBzd3H3PMitn", # EKS ng-fullnode in staging
     "arn:aws:iam::671250183987:role/eksctl-jupyterhub-nodegroup-ng-ful-NodeInstanceRole-rBVyq1V0exRe"  # EKS ng-fullnode in production
   ] }
