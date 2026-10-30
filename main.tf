@@ -313,6 +313,24 @@ module "private_ecr_github_actions_upload_credentials_neuroagent" {
   github_repository_name = ["neuroagent-ts"]
 }
 
+module "research_agent" {
+  source          = "./private-ecr-repo"
+  repository_name = "research-agent"
+  allowed_to_pull_principals = { AWS = [
+    "arn:aws:iam::992382695250:role/autonomous-researcher-poc-runtime", # aws-sandbox01, AgentCore Runtime POC
+  ] }
+  lifecycle_policy_max_image_count = 50
+}
+
+module "private_ecr_github_actions_upload_credentials_research_agent" {
+  source = "./private-ecr-upload-credentials"
+
+  iam_user_name          = "github_actions_upload_user_research_agent"
+  ecr_repository_name    = module.research_agent.repository_name
+  github_organisation    = local.github_organisation
+  github_repository_name = ["researchagent"]
+}
+
 module "launch_api" {
   source = "./private-ecr-repo"
 
