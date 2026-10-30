@@ -316,6 +316,10 @@ module "private_ecr_github_actions_upload_credentials_neuroagent" {
 module "research_agent" {
   source          = "./private-ecr-repo"
   repository_name = "research-agent"
+  # Only the sandbox POC Runtime role exists today. Add the staging/
+  # production AgentCore Runtime roles here once those are deployed
+  # (matching the staging/production entries on the neuroagent module
+  # above) - this list is not yet complete by design, not an oversight.
   allowed_to_pull_principals = { AWS = [
     "arn:aws:iam::992382695250:role/autonomous-researcher-poc-runtime", # aws-sandbox01, AgentCore Runtime POC
   ] }
