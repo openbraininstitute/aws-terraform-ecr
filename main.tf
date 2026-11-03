@@ -316,13 +316,12 @@ module "private_ecr_github_actions_upload_credentials_neuroagent" {
 module "research_agent" {
   source          = "./private-ecr-repo"
   repository_name = "research-agent"
-  # The staging/production AgentCore Runtime roles (aws-terraform-
-  # deployment#1854) don't exist yet - AWS's ECR SetRepositoryPolicy
-  # rejects a resource policy referencing a principal that doesn't
-  # exist ("Principal not found"), even for a syntactically valid,
-  # deterministic ARN. Add them back here once that module is applied.
+  # The production AgentCore Runtime role still doesn't exist - add it
+  # once that environment is deployed (matching the production entry
+  # on the neuroagent module above).
   allowed_to_pull_principals = { AWS = [
     "arn:aws:iam::992382695250:role/autonomous-researcher-poc-runtime", # aws-sandbox01, AgentCore Runtime POC
+    "arn:aws:iam::992382665735:role/research_agent_runtime",            # staging, AgentCore Runtime (aws-terraform-deployment#1854) - role now exists
   ] }
   lifecycle_policy_max_image_count = 50
 }
