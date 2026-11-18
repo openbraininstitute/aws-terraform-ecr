@@ -492,3 +492,11 @@ module "private_ecr_github_actions_upload_credentials_logbook" {
   github_organisation    = local.github_organisation
   github_repository_name = ["logbook-service"]
 }
+
+module "logbook_router" {
+  source = "./private-ecr-repo"
+
+  repository_name                  = "logbook-router"
+  allowed_to_pull_principals       = { AWS = ["arn:aws:iam::992382665735:role/logbook_router", "arn:aws:iam::671250183987:role/logbook_router"] }
+  lifecycle_policy_max_image_count = 30
+}
