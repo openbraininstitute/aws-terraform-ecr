@@ -474,3 +474,21 @@ module "pubolic_ecr_github_actions_upload_credentials_db_backups_container" {
   github_repository_name = ["db-backups-container"]
 }
 
+
+module "logbook_server" {
+  source = "./private-ecr-repo"
+
+  repository_name                  = "logbook-server"
+  allowed_to_pull_principals       = { AWS = ["arn:aws:iam::992382665735:role/logbook_server", "arn:aws:iam::671250183987:role/logbook_server"] }
+  lifecycle_policy_max_image_count = 30
+}
+
+module "private_ecr_github_actions_upload_credentials_logbook" {
+  source = "./private-ecr-upload-credentials"
+
+  iam_user_name          = "github_actions_upload_user_logbook"
+  role_name              = "logbook"
+  ecr_repository_name    = "logbook-*"
+  github_organisation    = local.github_organisation
+  github_repository_name = ["logbook-service"]
+}
