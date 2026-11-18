@@ -479,7 +479,6 @@ module "logbook_server" {
   source = "./private-ecr-repo"
 
   repository_name                  = "logbook-server"
-  allowed_to_pull_principals       = { AWS = ["arn:aws:iam::992382665735:role/logbook_server", "arn:aws:iam::671250183987:role/logbook_server"] }
   lifecycle_policy_max_image_count = 30
 }
 
