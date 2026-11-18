@@ -317,8 +317,7 @@ module "research_agent" {
   # once that environment is deployed (matching the production entry
   # on the neuroagent module above).
   allowed_to_pull_principals = { AWS = [
-    "arn:aws:iam::992382695250:role/autonomous-researcher-poc-runtime", # aws-sandbox01, AgentCore Runtime POC
-    "arn:aws:iam::992382665735:role/research_agent_runtime",            # staging, AgentCore Runtime (aws-terraform-deployment#1854) - role now exists
+    "arn:aws:iam::992382665735:role/research_agent_runtime", # staging, AgentCore Runtime (aws-terraform-deployment#1854) - role now exists
   ] }
   lifecycle_policy_max_image_count = 50
 }
