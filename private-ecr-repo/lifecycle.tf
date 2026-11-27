@@ -20,9 +20,10 @@ resource "aws_ecr_lifecycle_policy" "policy" {
     },
     {
       "rulePriority": 2,
-      "description": "Keep last ${var.lifecycle_policy_max_image_count} images",
+      "description": "Keep last ${var.lifecycle_policy_max_image_count} tagged images",
       "selection": {
-        "tagStatus": "any",
+        "tagStatus": "tagged",
+        "tagPatternList": ["*"],
         "countType": "imageCountMoreThan",
         "countNumber": ${var.lifecycle_policy_max_image_count}
       },
